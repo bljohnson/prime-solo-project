@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="adoptionApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Search & Rescue</title>
+		<script src="vendors/angular.min.js" charset="utf-8"></script>
+		<script src="vendors/angular-ui-router.js" charset="utf-8"></script>
+		<script src="scripts/script.js" charset="utf-8"></script>
+		<link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+	</head>
+	<body>
+		<!-- navigation links  -->
+		<nav class="navbar navbar-inverse" role="navigation">
+		     <div class="navbar-header">
+			   <a class="navbar-brand" ui-sref="#">Search & Rescue</a>
+		     </div>
+		     <ul class="nav navbar-nav">
+		     	<li><a ui-sref="welcome">Welcome</a></li>
+		     	<li><a ui-sref="about">About</a></li>
+		     	<li><a ui-sref="profile">My Profile</a></li>
+		     	<li><a ui-sref="criteria">My Search Criteria</a></li>
+		     	<li><a ui-sref="fetch">Go Fetch</a></li>
+		     	<li><a ui-sref="favorites">My Favorites</a></li>
+		     	<li><a ui-sref="signout">Sign Out</a></li>
+		     </ul>
+		</nav>
+		<!-- where we will inject our content from each partial html file -->
+		<div class="container">
+			<div ui-view></div>
+		</div>
+	</body>
+</html>
