@@ -1,3 +1,20 @@
-<p>
-	Hiiiii from inside favorites.html
-</p>
+<div ng-controller="AdoptionController">
+	<button type="button" name="favoritesButton" ng-click="getDogs()">View Favorites</button>
+
+	<!--display to DOM all pets in array of pet objects from petsdb-->
+  <table class="table table-striped">
+    <tr>
+      <th>Pet's Name</th>
+      <th>Age</th>
+	<th>Breed</th>
+      <th>Delete</th>
+    </tr>
+    <tr ng-repeat="dog in allDogs">
+      <td>{{dog.name}}</td>
+      <td>{{dog.age}}</td>
+      <td>{{dog.breed}}</td>
+      <td><button type="button" name="deleteButton" class="btn btn-default" id="{{pet._id}}" ng-click="deletePet($index)">Delete</button></td>
+    </tr>
+  </table>
+  
+</div>
