@@ -24,11 +24,13 @@ adoptionApp.config(function($stateProvider, $urlRouterProvider) {
 	})
 	.state('fetch', {
 		url: '/fetch',
-		templateUrl: 'partials/fetch.html'
+		templateUrl: 'partials/fetch.html',
+		controller: 'AdoptionController'
 	})
 	.state('favorites', {
 		url: '/favorites',
-		templateUrl: 'partials/favorites.html'
+		templateUrl: 'partials/favorites.html',
+		controller: 'AdoptionController'
 	})
 	.state('signout', {
 		url: '/signout',
