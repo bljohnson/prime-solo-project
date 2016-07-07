@@ -107,9 +107,9 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
       objectAction: 'publicSearch',
       search: {
         resultStart: 0,
-        resultLimit: 20,
-        resultSort: "animalLocation",
-        resultOrder: "asc",
+        resultLimit: 15, // start with small result set for demo purposes so less wait time
+        resultSort: "animalLocationDistance",
+        resultOrder: "asc", // this is finicky - sometimes sorts by radius correctly (closest to farthest dogs), sometimes not
         calcFoundRows: "Yes",
         filters: [
           {
@@ -130,10 +130,23 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
           {
             fieldName: "animalLocationDistance",
             operation: "radius",
-            criteria: "30"
+            criteria: "10"
+          },
+	    {
+            fieldName: "animalEnergyLevel",
+            operation: "equals",
+            criteria: "high"
+          },
+	    {
+            fieldName: "animalDescriptionPlain"
+          },
+	    {
+            fieldName: "animalHousetrained",
+            operation: "equals",
+            criteria: "yes"
           },
         ],
-        fields: [ "animalID","animalOrgID","animalName","animalBreed","animalLocation" ]
+        fields: [ "animalName", "animalBreed", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalHousetrained"]
       }
 };
 
@@ -147,6 +160,7 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
       data: data
     }).then( function( response ){
       console.log( "response.data: ", response.data );
+	console.log('hopefully Macey: ', response.data.data[10174487]); // target dog object from search results using it's Object #. Within data object within data object. Display this in favs list.
     }); // end api hit test
   };
 }]); // end API controller
