@@ -5,3 +5,7 @@
 .jumbotron h1 {
 	margin: 5% auto;
 }
+
+h1 {
+	text-align: center;
+}

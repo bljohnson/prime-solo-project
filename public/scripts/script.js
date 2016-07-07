@@ -108,7 +108,7 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
       search: {
         resultStart: 0,
         resultLimit: 20,
-        resultSort: "animalID",
+        resultSort: "animalLocation",
         resultOrder: "asc",
         calcFoundRows: "Yes",
         filters: [
@@ -125,7 +125,7 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
           {
             fieldName: "animalLocation",
             operation: "equals",
-            criteria: "92117"
+            criteria: "55427"
           },
           {
             fieldName: "animalLocationDistance",

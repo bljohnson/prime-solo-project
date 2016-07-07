@@ -1,3 +1,85 @@
-<p>
-	Hiiiii from inside criteria.html
-</p>
+<h1>Fetch Me Dogs That Are...</h1>
+
+<form>
+	<!-- setup function that only allows alpha letter input and is case-insensitive -->
+	<!-- allow API to search for keywords from user input -->
+	<!-- if field left blank, return all breeds that also fit other search criteria -->
+	<!-- allow search for multiple breeds, like top 3 breeds? -->
+	<!-- use dropdown instead and call a breed API? -->
+	<div ng-model="breedIn">
+		<h4>Breed:</h4>
+		<input type="text" name="breed" value="" placeholder="Enter breed here"><br><br>
+	</div>
+	<div ng-model="genderIn">
+		<h4>Gender:</h4>
+		<input type="radio" name="gender" value="male"> Male<br>
+		<input type="radio" name="gender" value="female"> Female<br>
+		<input type="radio" name="gender" value="noPreference" checked> No Preference<br><br>
+	</div>
+	<div ng-model="ageIn">
+		<h4>Age:</h4>
+		<input type="radio" name="age" value="under1"> Under a year<br>
+		<input type="radio" name="age" value="1to8"> Under 8 years<br>
+		<input type="radio" name="age" value="8plus"> 8 years and up<br>
+		<input type="radio" name="age" value="noPreference" checked> No Preference<br><br>
+	</div>
+	<div ng-model="sizeIn">
+		<h4>Size:</h4>
+		<input type="radio" name="size" value="under20"> Under 20#<br>
+		<input type="radio" name="size" value="under40"> Under 40#<br>
+		<input type="radio" name="size" value="under60"> Under 60#<br>
+		<input type="radio" name="size" value="under80"> Under 80#<br>
+		<input type="radio" name="size" value="80plus"> 80# and up<br>
+		<input type="radio" name="size" value="allSizes" checked> All Sizes<br><br>
+	</div>
+	<div ng-model="dogFriendlyIn">
+		<h4>Dog Friendly:</h4>
+		<input type="radio" name="dogFriendly" value="yes"> Yes<br>
+		<input type="radio" name="dogFriendly" value="noPreference" checked> No Preference<br><br>
+	</div>
+	<div ng-model="catFriendlyIn">
+		<h4>Cat Friendly:</h4>
+		<input type="radio" name="catFriendly" value="yes"> Yes<br>
+		<input type="radio" name="catFriendly" value="noPreference" checked> No Preference<br><br>
+	</div>
+	<div ng-model="kidFriendlyIn">
+		<h4>Kid Friendly:</h4>
+		<input type="radio" name="kidFriendly" value="yes"> Yes<br>
+		<input type="radio" name="kidFriendly" value="noPreference" checked> No Preference<br><br>
+	</div>
+	<div ng-model="energyLevelIn">
+		<h4>Energy Level:</h4>
+		<input type="radio" name="energyLevel" value="low"> Low<br>
+		<input type="radio" name="energyLevel" value="moderate"> Moderate<br>
+		<input type="radio" name="energyLevel" value="high"> High<br>
+		<input type="radio" name="energyLevel" value="noPreference" checked> No Preference<br><br>
+	</div>
+	<div ng-model="housetrainedIn">
+		<h4>Housetrained:</h4>
+		<input type="radio" name="housetrained" value="yes"> Yes<br>
+		<input type="radio" name="housetrained" value="noPreference" checked> No Preference<br><br>
+	</div>
+	<div ng-model="cratetrainedIn">
+		<h4>Crate-trained:</h4>
+		<input type="radio" name="cratetrained" value="yes"> Yes<br>
+		<input type="radio" name="cratetrained" value="noPreference" checked> No Preference<br><br>
+	</div>
+
+	<div ng-model="showstoppers">
+		<h4>Traits you would not tolerate in a dog (check all that apply):</h4>
+	 	<input type="checkbox" name="specialNeeds" value="specialNeeds"> Has special needs/requires ongoing medical care<br>
+		<input type="checkbox" name="deaf" value="deaf"> Deaf<br>
+		<input type="checkbox" name="blind" value="blind"> Blind<br>
+		<input type="checkbox" name="drooler" value="drooler"> Excessive Drooler<br>
+		<input type="checkbox" name="sheds" value="sheds"> Sheds<br>
+		<input type="checkbox" name="allergies" value="allergies"> Has allergies<br>
+		<input type="checkbox" name="noLargeDogs" value="noLargeDogs"> Cannot live with large dogs<br>
+		<input type="checkbox" name="noSmallDogs" value="noSmallDogs"> Cannot live with small dogs<br>
+		<input type="checkbox" name="noMaleDogs" value="noMaleDogs"> Cannot live with male dogs<br>
+		<input type="checkbox" name="noFemaleDogs" value="noFemaleDogs"> Cannot live with female dogs<br>
+		<input type="checkbox" name="noCritters" value="noCritters"> Cannot live with farm animals/critters<br>
+		<input type="checkbox" name="noYoungKids" value="noYoungKids"> Cannot live with young kids<br>
+		<input type="checkbox" name="vocal" value="vocal"> Vocal<br>
+	</div>
+
+</form>

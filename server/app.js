@@ -13,6 +13,7 @@ var User = require('../models/newuser'); // require model file that creates user
 
 // middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 // test db connection
 connectToDB.on('error', function(err) {
@@ -21,6 +22,10 @@ connectToDB.on('error', function(err) {
 connectToDB.once('open', function() {
 	console.log('mongodb connection open');
 });
+
+// app.get('/signin', function(req, res) {
+// 	res.sendfile('public/partials/signin.html');
+// });
 
 // Passport session configuration - allows user's session to be persistent
 // app.use(session({
