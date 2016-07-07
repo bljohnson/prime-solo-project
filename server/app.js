@@ -1,8 +1,8 @@
-var express=require('express');
-var app=express();
-var path=require('path');
-var bodyParser=require('body-parser');
-var mongoose=require('mongoose');
+var express = require('express');
+var app = express();
+var path = require('path');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 var connectToDB = mongoose.connect('mongodb://localhost:27017/adoptiondb').connection;
 
 var Dog = require('../models/newdog'); // require model file that creates dogSchema
@@ -22,6 +22,27 @@ connectToDB.once('open', function() {
 	console.log('mongodb connection open');
 });
 
+// Passport session configuration - allows user's session to be persistent
+// app.use(session({
+//    secret: 'secret',
+//    key: 'user',
+//    resave: 'true',
+//    saveUninitialized: false,
+//    cookie: {maxage: 60000, secure: false}
+// })); // end app.use
+
+// init passport
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+// include routes
+// var index = require('../routes/index');
+// var signUp = require('../routes/signup');
+
+// routes
+// app.use('/signup', signUp);
+// app.use('/*', index);
+
 // spin up server
 app.listen(process.env.PORT || 3000, function() {
 	console.log('now serving port');
@@ -38,7 +59,7 @@ app.get('/', function(req,res) {
 
 // get all favorited dogs in adoptiondb
 app.get('/getDogs', function(req, res){
-  Dog.find() //
+  Dog.find()
   .then(function(data){
     res.send(data);
   });

@@ -1,7 +1,9 @@
 console.log('Hello from script.js');
 
+// var key = require('../modules/api.js');
+
 // create AngularJS module, inject ui.router as dependency
-var adoptionApp=angular.module('adoptionApp', ['ui.router']);
+var adoptionApp = angular.module('adoptionApp', ['ui.router']);
 
 adoptionApp.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/welcome');
@@ -92,3 +94,59 @@ $scope.getDogs = function () {
    });
  }; // end deleteDog function
 }]); // end AdoptionController
+
+
+
+// test API access
+adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope, $http) {
+  $scope.hitAPI = function(){
+    console.log('hit API');
+    var data = {
+      apikey: '0mOrCBOl',
+      objectType: 'animals',
+      objectAction: 'publicSearch',
+      search: {
+        resultStart: 0,
+        resultLimit: 20,
+        resultSort: "animalID",
+        resultOrder: "asc",
+        calcFoundRows: "Yes",
+        filters: [
+          {
+            fieldName: "animalStatus",
+            operation: "equals",
+            criteria: "Available"
+          },
+          {
+            fieldName: "animalSpecies",
+            operation: "equals",
+            criteria: "dog"
+          },
+          {
+            fieldName: "animalLocation",
+            operation: "equals",
+            criteria: "92117"
+          },
+          {
+            fieldName: "animalLocationDistance",
+            operation: "radius",
+            criteria: "30"
+          },
+        ],
+        fields: [ "animalID","animalOrgID","animalName","animalBreed","animalLocation" ]
+      }
+};
+
+    var apiURL = 'https://api.rescuegroups.org/http/v2.json';
+    console.log('apiURL: ', apiURL);
+
+    $http({
+      method: 'POST',
+      url: apiURL,
+      headers: {'Content-Type': 'application/json'},
+      data: data
+    }).then( function( response ){
+      console.log( "response.data: ", response.data );
+    }); // end api hit test
+  };
+}]); // end API controller
