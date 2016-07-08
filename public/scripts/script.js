@@ -3,7 +3,7 @@ console.log('Hello from script.js');
 // var key = require('../modules/api.js');
 
 // create AngularJS module, inject ui.router as dependency
-var adoptionApp = angular.module('adoptionApp', ['ui.router']);
+var adoptionApp = angular.module('adoptionApp', ['ui.router', 'ngDialog']);
 
 adoptionApp.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/welcome');
@@ -52,13 +52,14 @@ adoptionApp.config(function($stateProvider, $urlRouterProvider) {
 // // create a controller to define adoptionApp's behavior
 adoptionApp.controller('AdoptionController', ['$scope', '$http', function ($scope, $http) {
 // code that gets executed when this controller is called
-// define function that will create object to send to adoptiondb
+// define function that will create object to send to adoptiondb (THIS SHOULD JUST BE DOGS THE USER 'FAVORITES')
 $scope.addDog = function () {
   event.preventDefault();
   var sendDogToDb = {
     name: $scope.nameIn,
     age: $scope.ageIn,
-    breed: $scope.breedIn
+    breed: $scope.breedIn,
+    gender: $scope.genderIn
   };
   // make a call to server with object to be stored in db
   $http({
@@ -102,7 +103,7 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
   $scope.hitAPI = function(){
     console.log('hit API');
     var data = {
-      apikey: '0mOrCBOl',
+      apikey: '0mOrCBOl', // need to figure out how to hide in a file that gets exported/ng-included in
       objectType: 'animals',
       objectAction: 'publicSearch',
       search: {
@@ -113,15 +114,30 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
         calcFoundRows: "Yes",
         filters: [
           {
-            fieldName: "animalStatus",
+            fieldName: "animalStatus", // this can be hardcoded in
             operation: "equals",
             criteria: "Available"
           },
           {
-            fieldName: "animalSpecies",
+            fieldName: "animalSpecies", // this can be hardcoded in
             operation: "equals",
             criteria: "dog"
           },
+	    {
+            fieldName: "animalGeneralAge",
+            operation: "equals",
+            criteria: $scope.ageIn
+          },
+	    {
+		fieldName: "animalSex",
+		operation: "equals",
+		criteria: $scope.genderIn
+	    },
+	    {
+	     fieldName: "animalGeneralSizePotential",
+	     operation: "equals",
+	     criteria: $scope.sizeIn
+	   },
           {
             fieldName: "animalLocation",
             operation: "equals",
@@ -130,25 +146,50 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
           {
             fieldName: "animalLocationDistance",
             operation: "radius",
-            criteria: "10"
+            criteria: "10000"
           },
+	    {
+		fieldName: "animalOKWithDogs",
+		operation: "equals",
+		criteria: $scope.dogFriendlyIn
+	    },
+	    {
+		fieldName: "animalOKWithCats",
+		operation: "equals",
+		criteria: $scope.catFriendlyIn
+	    },
+	    {
+		fieldName: "animalOKWithKids",
+		operation: "equals",
+		criteria: $scope.kidFriendlyIn
+	    },
 	    {
             fieldName: "animalEnergyLevel",
             operation: "equals",
-            criteria: "high"
+            criteria: $scope.energyLevelIn
           },
 	    {
             fieldName: "animalDescriptionPlain"
           },
-	    {
-            fieldName: "animalHousetrained",
-            operation: "equals",
-            criteria: "yes"
-          },
+	{
+	  fieldName: "animalPrimaryBreed",
+	  operation: "contains",
+	  criteria: $scope.breedIn
+	},
+	{
+	  fieldName: "animalHousetrained",
+	  operation: "equals",
+	  criteria: $scope.housetrainedIn
+	},
+	{
+	  fieldName: "animalCratetrained",
+	  operation: "equals",
+	  criteria: $scope.cratetrainedIn
+  	}
         ],
-        fields: [ "animalName", "animalBreed", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalHousetrained"]
-      }
-};
+        fields: [ "animalName", "animalBreed", "animalSex", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalGeneralSizePotential", "animalBirthdateExact", "animalGeneralAge", "animalPrimaryBreed", "animalOKWithDogs", "animalHousetrained", "animalCratetrained"]
+  } // end search
+}; // end hitAPI
 
     var apiURL = 'https://api.rescuegroups.org/http/v2.json';
     console.log('apiURL: ', apiURL);
@@ -163,4 +204,13 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
 	console.log('hopefully Macey: ', response.data.data[10174487]); // target dog object from search results using it's Object #. Within data object within data object. Display this in favs list.
     }); // end api hit test
   };
-}]); // end API controller
+}]); // end HitApiController
+
+
+
+// test modal functionality
+adoptionApp.controller('ModalController', function ($scope, ngDialog) {
+	$scope.openModal = function() {
+		ngDialog.open({ template: 'partials/about.html', className: 'ngdialog-theme-default' });
+	};
+}); // end ModalController

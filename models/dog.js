@@ -5,7 +5,8 @@ var Schema = mongoose.Schema; // enable use of schema property
 var dogSchema = new Schema ({
 	name: {type: String},
       age: {type: String},
-      breed: {type: String}
+      breed: {type: String},
+	gender: {type: String}
 }); // end dogSchema
 
 var Dog = mongoose.model('favoritedogs', dogSchema); // creates model from dogSchema called Dog, and stores in favoritedogs 'collection' of documents within adoptiondb

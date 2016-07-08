@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var connectToDB = mongoose.connect('mongodb://localhost:27017/adoptiondb').connection;
 
-var Dog = require('../models/newdog'); // require model file that creates dogSchema
+var Dog = require('../models/dog'); // require model file that creates dogSchema
 var User = require('../models/newuser'); // require model file that creates userSchema
 
 // var session = require('express-session'); // allows user's session to persist, need for Passport
@@ -79,6 +79,7 @@ app.post('/postDog', function(req, res) {
     name: req.body.name,
     age: req.body.age,
     breed: req.body.breed,
+    gender: req.body.gender
   });
 // saves object to db. .save is a method specific to Mongoose
   newDog.save(function(err) {
