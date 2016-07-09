@@ -1,15 +1,38 @@
 <!--TESTING DB CONNECTION/ROUTES - eventually needs to pull from Rescue Groups API in combination with user preferences-->
-<input type="text" ng-model="nameIn" value="" placeholder="Dog's Name">
+<!-- <input type="text" ng-model="nameIn" value="" placeholder="Dog's Name">
 <input type="text" ng-model="ageIn" value="" placeholder="Dog's Age">
 <input type="text" ng-model="breedIn" value="" placeholder="Dog's Breed(s)">
 
-<button type="button" name="addButton" ng-click="addDog()">Add to Favorites</button>
+<button type="button" name="addButton" ng-click="addDog()">Add to Favorites</button> -->
+
+
 
 
 <!-- testing API access -->
 <div ng-controller="HitApiController">
 	<h3>Test API Access</h3>
 	<button type="button" name="button" ng-click="hitAPI()"></button>
+
+	<!-- example dog to DOM -->
+	<div ng-repeat="dog in showMeTheDogs">
+		Name: {{dog.data[3617177].animalName}} <br>
+		Breed(s): {{dog.data[3617177].animalBreed}} <br>
+		Primary Breed: {{dog.data[3617177].animalPrimaryBreed}} <br>
+		Gender: {{dog.data[3617177].animalSex}} <br>
+		General Age: {{dog.data[3617177].animalGeneralAge}} <br>
+		Exact Birthday: {{dog.data[3617177].animalBirthdateExact}} <br>
+		Location: {{dog.data[3617177].animalLocation}} <br>
+		General Size: {{dog.data[3617177].animalGeneralSizePotential}} <br>
+		Housetrained: {{dog.data[3617177].animalHousetrained}} <br>
+		Cratetrained: {{dog.data[3617177].animalCratetrained}} <br>
+		Energy Level: {{dog.data[3617177].animalEnergyLevel}} <br>
+		Good with Dogs: {{dog.data[3617177].animalOKWithDogs}} <br>
+		Good with Cats: {{dog.data[3617177].animalOKWithCats}} <br>
+		Good with Kids: {{dog.data[3617177].animalOKWithKids}} <br>
+		Description: {{dog.data[3617177].animalDescriptionPlain}} <br>
+		Adoption Fee: {{dog.data[3617177].animalAdoptionFee}} <br>
+		URL: {{dog.data[3617177].animalUrl}} <br>
+	</div>
 </div>
 
 

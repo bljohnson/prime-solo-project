@@ -5,7 +5,7 @@ console.log('Hello from script.js');
 // create AngularJS module, inject ui.router as dependency
 var adoptionApp = angular.module('adoptionApp', ['ui.router', 'ngDialog']);
 
-adoptionApp.config(function($stateProvider, $urlRouterProvider) {
+adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config allows configuration of app before it boots up
 	$urlRouterProvider.otherwise('/welcome');
 	$stateProvider
 	.state('welcome', {
@@ -27,7 +27,7 @@ adoptionApp.config(function($stateProvider, $urlRouterProvider) {
 	.state('fetch', {
 		url: '/fetch',
 		templateUrl: 'partials/fetch.html',
-		controller: 'AdoptionController'
+		controller: 'HitApiController'
 	})
 	.state('favorites', {
 		url: '/favorites',
@@ -100,6 +100,7 @@ $scope.getDogs = function () {
 
 // test API access
 adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope, $http) {
+  $scope.showMeTheDogs = []; // empty array to push dog data to
   $scope.hitAPI = function(){
     console.log('hit API');
     var data = {
@@ -108,7 +109,7 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
       objectAction: 'publicSearch',
       search: {
         resultStart: 0,
-        resultLimit: 15, // start with small result set for demo purposes so less wait time
+        resultLimit: 30, // start with small result set for demo purposes so less wait time
         resultSort: "animalLocationDistance",
         resultOrder: "asc", // this is finicky - sometimes sorts by radius correctly (closest to farthest dogs), sometimes not
         calcFoundRows: "Yes",
@@ -141,12 +142,12 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
           {
             fieldName: "animalLocation",
             operation: "equals",
-            criteria: "55427"
+            criteria: "55427" // will need to pull from user profile input
           },
           {
             fieldName: "animalLocationDistance",
             operation: "radius",
-            criteria: "10000"
+            criteria: "50" // will need to pull from user profile input
           },
 	    {
 		fieldName: "animalOKWithDogs",
@@ -187,23 +188,24 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
 	  criteria: $scope.cratetrainedIn
   	}
         ],
-        fields: [ "animalName", "animalBreed", "animalSex", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalGeneralSizePotential", "animalBirthdateExact", "animalGeneralAge", "animalPrimaryBreed", "animalOKWithDogs", "animalHousetrained", "animalCratetrained"]
+        fields: [ "animalName", "animalBreed", "animalPrimaryBreed", "animalSex", "animalGeneralAge", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalGeneralSizePotential", "animalBirthdateExact", "animalOKWithDogs", "animalOKWithCats", "animalOKWithKids", "animalHousetrained", "animalCratetrained", "animalSpecialneeds", "animalSpecialneedsDescription", "animalUrl", "animalNoFemaleDogs", "animalNoMaleDogs", "animalNoLargeDogs", "animalNoSmallDogs", "animalAdoptionFee", "animalPictures"]
   } // end search
-}; // end hitAPI
+}; // end var data
 
-    var apiURL = 'https://api.rescuegroups.org/http/v2.json';
-    console.log('apiURL: ', apiURL);
+    // var apiURL = 'https://api.rescuegroups.org/http/v2.json';
+    // console.log('apiURL: ', apiURL);
 
     $http({
       method: 'POST',
-      url: apiURL,
+      url: 'https://api.rescuegroups.org/http/v2.json',
       headers: {'Content-Type': 'application/json'},
       data: data
     }).then( function( response ){
       console.log( "response.data: ", response.data );
-	console.log('hopefully Macey: ', response.data.data[10174487]); // target dog object from search results using it's Object #. Within data object within data object. Display this in favs list.
+	// console.log('hopefully Macey: ', response.data.data[10174487]); // target dog object from search results using it's Object #. Within data object within data object. Display this in favs list.
+	$scope.showMeTheDogs.push(response.data);
     }); // end api hit test
-  };
+  }; // end hitAPI function
 }]); // end HitApiController
 
 
@@ -211,6 +213,6 @@ adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope,
 // test modal functionality
 adoptionApp.controller('ModalController', function ($scope, ngDialog) {
 	$scope.openModal = function() {
-		ngDialog.open({ template: 'partials/about.html', className: 'ngdialog-theme-default' });
+		ngDialog.open({ template: 'partials/fetch.html', className: 'ngdialog-theme-default' });
 	};
 }); // end ModalController

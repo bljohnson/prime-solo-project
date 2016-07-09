@@ -6,12 +6,12 @@ var Schema = mongoose.Schema; // enable use of schema property
 var userSchema = new Schema ({
 
 // enter fields and data type here. use modules to link to Favorites list and Search Criteria?????
-	first_name: {type: String},
-	last_name: {type: String},
-	username: {type: String},
-	password: {type: String},
-	email: {type: String},
-	zip: {type: Number}
+	first_name: {type: String, required: true},
+	last_name: {type: String, required: true},
+	username: {type: String, required: true},
+	password: {type: String, required: true},
+	email: {type: String}, // do I really need email address for anything???????????????????????????????????
+	zip: {type: Number, required: true}
 
 }); // end userSchema
 
