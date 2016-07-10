@@ -1,56 +1,162 @@
-console.log('Hello from script.js');
+console.log('Hello from script.js!');
 
-// var key = require('../modules/api.js');
-
-// create AngularJS module, inject ui.router as dependency
-var adoptionApp = angular.module('adoptionApp', ['ui.router', 'ngDialog']);
+// will need to also inject ngDialog as dependency if use modals in Favorites list
+var adoptionApp = angular.module('adoptionApp', ['ui.router']);
 
 adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config allows configuration of app before it boots up
 	$urlRouterProvider.otherwise('/welcome');
 	$stateProvider
 	.state('welcome', {
 		url: '/welcome',
-		templateUrl: 'partials/welcome.html'
+		templateUrl: '/views/partials/welcome.html'
 	})
 	.state('about', {
 		url: '/about',
-		templateUrl: 'partials/about.html'
-	})
-	.state('profile', {
-		url: '/profile',
-		templateUrl: 'partials/profile.html'
+		templateUrl: '/views/partials/about.html'
 	})
 	.state('criteria', {
 		url: '/criteria',
-		templateUrl: 'partials/criteria.html'
+		templateUrl: '/views/partials/criteria.html'
+		// controller: " "
 	})
 	.state('fetch', {
 		url: '/fetch',
-		templateUrl: 'partials/fetch.html',
-		controller: 'HitApiController'
+		templateUrl: '/views/partials/fetch.html'
+		// controller: " "
 	})
 	.state('favorites', {
 		url: '/favorites',
-		templateUrl: 'partials/favorites.html',
-		controller: 'AdoptionController'
-	})
-	.state('signout', {
-		url: '/signout',
-		templateUrl: 'partials/signout.html'
-	})
-	.state('welcome.signin', {
-		url: '/signin',
-		templateUrl: 'partials/signin.html'
-	})
-	.state('welcome.signup', {
-		url: '/signup',
-		templateUrl: 'partials/signup.html'
+		templateUrl: '/views/partials/favorites.html'
+		// controller: " "
 	});
-});
+}); // end adoptionApp states configuration
+
+
+
+// test API access
+adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope, $http) {
+  $scope.showMeTheDogs = []; // empty array to push dog data to
+  $scope.dog_index = 0;
+  $scope.dog = {};
+  $scope.next = function () {
+	  if ($scope.dog_index >= $scope.showMeTheDogs.length - 1) {
+		  $scope.dog_index = 0;
+	  } else {
+		  $scope.dog_index++;
+	  }
+	  console.log($scope.showMeTheDogs.length + '/' + $scope.dog_index);
+  }; // end .next
+
+  $scope.hitAPI = function(){
+    console.log('hit API');
+    var data = {
+      apikey: '0mOrCBOl', // need to figure out how to hide in a file that gets exported/ng-included in
+      objectType: 'animals',
+      objectAction: 'publicSearch',
+      search: {
+        resultStart: 0,
+        resultLimit: 30, // start with small result set for demo purposes so less wait time
+        resultSort: "animalLocationDistance",
+        resultOrder: "asc", // this is finicky - sometimes sorts by radius correctly (closest to farthest dogs), sometimes not
+        calcFoundRows: "Yes",
+        filters: [
+          {
+            fieldName: "animalStatus", // this can be hardcoded in
+            operation: "equals",
+            criteria: "Available"
+          },
+          {
+            fieldName: "animalSpecies", // this can be hardcoded in
+            operation: "equals",
+            criteria: "dog"
+          },
+	    {
+            fieldName: "animalGeneralAge",
+            operation: "equals",
+            criteria: $scope.ageIn
+          },
+	    {
+		fieldName: "animalSex",
+		operation: "equals",
+		criteria: $scope.genderIn
+	    },
+	    {
+	     fieldName: "animalGeneralSizePotential",
+	     operation: "equals",
+	     criteria: $scope.sizeIn
+	   },
+          {
+            fieldName: "animalLocation",
+            operation: "equals",
+            criteria: $scope.zipcodeIn
+          },
+          {
+            fieldName: "animalLocationDistance",
+            operation: "radius",
+            criteria: $scope.searchRadiusIn
+          },
+	    {
+		fieldName: "animalOKWithDogs",
+		operation: "equals",
+		criteria: $scope.dogFriendlyIn
+	    },
+	    {
+		fieldName: "animalOKWithCats",
+		operation: "equals",
+		criteria: $scope.catFriendlyIn
+	    },
+	    {
+		fieldName: "animalOKWithKids",
+		operation: "equals",
+		criteria: $scope.kidFriendlyIn
+	    },
+	    {
+            fieldName: "animalEnergyLevel",
+            operation: "equals",
+            criteria: $scope.energyLevelIn
+          },
+	    {
+            fieldName: "animalDescriptionPlain"
+          },
+	{
+	  fieldName: "animalPrimaryBreed",
+	  operation: "contains",
+	  criteria: $scope.breedIn
+	},
+	{
+	  fieldName: "animalHousetrained",
+	  operation: "equals",
+	  criteria: $scope.housetrainedIn
+	},
+	{
+	  fieldName: "animalCratetrained",
+	  operation: "equals",
+	  criteria: $scope.cratetrainedIn
+  	}
+        ],
+        fields: [ "animalName", "animalBreed", "animalPrimaryBreed", "animalSex", "animalGeneralAge", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalGeneralSizePotential", "animalBirthdateExact", "animalOKWithDogs", "animalOKWithCats", "animalOKWithKids", "animalHousetrained", "animalCratetrained", "animalUrl", "animalAdoptionFee", "animalPictures"]
+  } // end search
+}; // end var data
+
+    $http({
+      method: 'POST',
+      url: 'https://api.rescuegroups.org/http/v2.json',
+      headers: {'Content-Type': 'application/json'},
+      data: data
+    }).then( function( response ){
+      console.log( "response.data: ", response.data );
+
+	$scope.showMeTheDogs.push(response.data);
+
+    }); // end api hit test
+  }; // end hitAPI function
+}]); // end HitApiController
+
+
 
 
 // // create a controller to define adoptionApp's behavior
-adoptionApp.controller('AdoptionController', ['$scope', '$http', function ($scope, $http) {
+adoptionApp.controller('FavoriteDogsController', ['$scope', '$http', function ($scope, $http) {
 // code that gets executed when this controller is called
 // define function that will create object to send to adoptiondb (THIS SHOULD JUST BE DOGS THE USER 'FAVORITES')
 $scope.addDog = function () {
@@ -94,119 +200,8 @@ $scope.getDogs = function () {
      data: dogId
    });
  }; // end deleteDog function
-}]); // end AdoptionController
+}]); // end FavoriteDogsController
 
-
-
-// test API access
-adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope, $http) {
-  $scope.showMeTheDogs = []; // empty array to push dog data to
-  $scope.hitAPI = function(){
-    console.log('hit API');
-    var data = {
-      apikey: '0mOrCBOl', // need to figure out how to hide in a file that gets exported/ng-included in
-      objectType: 'animals',
-      objectAction: 'publicSearch',
-      search: {
-        resultStart: 0,
-        resultLimit: 30, // start with small result set for demo purposes so less wait time
-        resultSort: "animalLocationDistance",
-        resultOrder: "asc", // this is finicky - sometimes sorts by radius correctly (closest to farthest dogs), sometimes not
-        calcFoundRows: "Yes",
-        filters: [
-          {
-            fieldName: "animalStatus", // this can be hardcoded in
-            operation: "equals",
-            criteria: "Available"
-          },
-          {
-            fieldName: "animalSpecies", // this can be hardcoded in
-            operation: "equals",
-            criteria: "dog"
-          },
-	    {
-            fieldName: "animalGeneralAge",
-            operation: "equals",
-            criteria: $scope.ageIn
-          },
-	    {
-		fieldName: "animalSex",
-		operation: "equals",
-		criteria: $scope.genderIn
-	    },
-	    {
-	     fieldName: "animalGeneralSizePotential",
-	     operation: "equals",
-	     criteria: $scope.sizeIn
-	   },
-          {
-            fieldName: "animalLocation",
-            operation: "equals",
-            criteria: "55427" // will need to pull from user profile input
-          },
-          {
-            fieldName: "animalLocationDistance",
-            operation: "radius",
-            criteria: "50" // will need to pull from user profile input
-          },
-	    {
-		fieldName: "animalOKWithDogs",
-		operation: "equals",
-		criteria: $scope.dogFriendlyIn
-	    },
-	    {
-		fieldName: "animalOKWithCats",
-		operation: "equals",
-		criteria: $scope.catFriendlyIn
-	    },
-	    {
-		fieldName: "animalOKWithKids",
-		operation: "equals",
-		criteria: $scope.kidFriendlyIn
-	    },
-	    {
-            fieldName: "animalEnergyLevel",
-            operation: "equals",
-            criteria: $scope.energyLevelIn
-          },
-	    {
-            fieldName: "animalDescriptionPlain"
-          },
-	{
-	  fieldName: "animalPrimaryBreed",
-	  operation: "contains",
-	  criteria: $scope.breedIn
-	},
-	{
-	  fieldName: "animalHousetrained",
-	  operation: "equals",
-	  criteria: $scope.housetrainedIn
-	},
-	{
-	  fieldName: "animalCratetrained",
-	  operation: "equals",
-	  criteria: $scope.cratetrainedIn
-  	}
-        ],
-        fields: [ "animalName", "animalBreed", "animalPrimaryBreed", "animalSex", "animalGeneralAge", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalGeneralSizePotential", "animalBirthdateExact", "animalOKWithDogs", "animalOKWithCats", "animalOKWithKids", "animalHousetrained", "animalCratetrained", "animalSpecialneeds", "animalSpecialneedsDescription", "animalUrl", "animalNoFemaleDogs", "animalNoMaleDogs", "animalNoLargeDogs", "animalNoSmallDogs", "animalAdoptionFee", "animalPictures"]
-  } // end search
-}; // end var data
-
-    // var apiURL = 'https://api.rescuegroups.org/http/v2.json';
-    // console.log('apiURL: ', apiURL);
-
-    $http({
-      method: 'POST',
-      url: 'https://api.rescuegroups.org/http/v2.json',
-      headers: {'Content-Type': 'application/json'},
-      data: data
-    }).then( function( response ){
-      console.log( "response.data: ", response.data );
-	// console.log('hopefully Macey: ', response.data.data[10174487]); // target dog object from search results using it's Object #. Within data object within data object. Display this in favs list.
-	$scope.showMeTheDogs.push(response.data);
-    }); // end api hit test
-  }; // end hitAPI function
-}]); // end HitApiController
 
 
 

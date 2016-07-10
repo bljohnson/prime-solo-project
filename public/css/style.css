@@ -1,11 +1,32 @@
-.jumbotron {
+.jumbotron h2 {
+	font-size: 50px;
+	margin-bottom: 3%;
 	text-align: center;
 }
 
-.jumbotron h1 {
-	margin: 5% auto;
+.jumbotron h4 {
+	text-align: center;
 }
 
-h1 {
+.jumbotron p {
+  font-size: 20px;
+  text-align: center;
+  margin: 1% 15%;
+}
+
+.jumbotron form {
+	border: 2px solid black;
+	padding: 2%;
+	width: 25%;
+	margin-left: 38%;
+	margin-top: 3%;
+	text-align: center;
+}
+
+.jumbotron form .homeBtns {
+	margin-top: 7%;
+}
+
+footer {
 	text-align: center;
 }

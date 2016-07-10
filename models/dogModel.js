@@ -7,6 +7,7 @@ var dogSchema = new Schema ({
       age: {type: String},
       breed: {type: String},
 	gender: {type: String}
+	// need to add more fields.................
 }); // end dogSchema
 
 var Dog = mongoose.model('favoritedogs', dogSchema); // creates model from dogSchema called Dog, and stores in favoritedogs 'collection' of documents within adoptiondb
