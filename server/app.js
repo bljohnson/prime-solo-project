@@ -4,13 +4,15 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path = require('path');
 
-var passport = require('../strategies/userStrategy');
-var session = require('express-session'); // allows user's session to persist, need for Passport
+////////////////// SANS PASSPORT ///////////////
 
-// include routes
-var index = require('../routes/index');
-var signUp = require('../routes/signup');
-var user = require ('../routes/user');
+// var passport = require('../strategies/userStrategy');
+// var session = require('express-session'); // allows user's session to persist, need for Passport
+
+// // include routes
+// var index = require('../routes/index');
+// var signUp = require('../routes/signup');
+// var user = require ('../routes/user');
 
 // include models
 var Dog = require('../models/dogModel'); // require model file that creates dogSchema
@@ -24,23 +26,25 @@ app.use(bodyParser.urlencoded({extended: true}));
 // make public folder static
 app.use(express.static('public'));
 
-// Passport session configuration - allows user's session to be persistent
-app.use(session({
-   secret: 'secret',
-   key: 'user',
-   resave: 'true',
-   saveUninitialized: false,
-   cookie: {maxage: 60000, secure: false}
-})); // end app.use
+////////////////// SANS PASSPORT ///////////////
 
-// init passport
-app.use(passport.initialize());
-app.use(passport.session());
+// // Passport session configuration - allows user's session to be persistent
+// app.use(session({
+//    secret: 'secret',
+//    key: 'user',
+//    resave: 'true',
+//    saveUninitialized: false,
+//    cookie: {maxage: 60000, secure: false}
+// })); // end app.use
 
-// use routes
-app.use('/signup', signUp);
-app.use('/user', user);
-app.use('/*', index); // put last in routes
+// // init passport
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+// // use routes
+// app.use('/signup', signUp);
+// app.use('/user', user);
+// app.use('/*', index); // put last in routes
 
 // db connection string
 var connectToDB = mongoose.connect('mongodb://localhost:27017/adoptiondb').connection;
@@ -52,6 +56,8 @@ connectToDB.on('error', function(err) {
 connectToDB.once('open', function() {
 	console.log('mongodb connection open');
 });
+
+////////////////// SANS PASSPORT ///////////////
 
 // terminate user session
 // app.get('/logout', function(req, res){
@@ -67,12 +73,8 @@ app.listen(process.env.PORT || 3000, function() {
 // base URL
 app.get('/', function(req,res) {
 	console.log('in base URL');
-	res.sendFile(path.resolve('public/views/index.html'));
+	res.sendFile(path.resolve('public/views/indexSansPassport.html'));
 });
-
-
-// --------------------------------------------------------------------------------------------------------
-
 
 // save user settings in db
 app.post('/postSettings', function(req, res) {
@@ -107,7 +109,6 @@ app.post('/postSettings', function(req, res) {
   	}); // end newSettings save function
 }); // end app.post route
 
-
 // get user settings from db
 app.get('/getSettings', function(req, res){
 	Settings.find() // finds ALL settings in usersettings collection
@@ -118,8 +119,8 @@ app.get('/getSettings', function(req, res){
 
 
 
+////////////////// --------------------------------------------------------------------------------------------------------------
 
-// --------------------------------------------------------------------------------------------------------------
 
 // get all favorited dogs in adoptiondb
 app.get('/getDogs', function(req, res){

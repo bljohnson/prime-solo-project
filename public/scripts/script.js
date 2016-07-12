@@ -4,8 +4,12 @@ console.log('Hello from script.js!');
 var adoptionApp = angular.module('adoptionApp', ['ui.router']);
 
 adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config allows configuration of app before it boots up
-	$urlRouterProvider.otherwise('/welcome');
+	$urlRouterProvider.otherwise('/home');
 	$stateProvider
+	.state('home', {
+		url: '/indexSansPassport',
+		templateUrl: '/views/indexSansPassport.html'
+	})
 	.state('welcome', {
 		url: '/welcome',
 		templateUrl: '/views/partials/welcome.html'
@@ -17,17 +21,14 @@ adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config all
 	.state('criteria', {
 		url: '/criteria',
 		templateUrl: '/views/partials/criteria.html'
-		// controller: " "
 	})
 	.state('fetch', {
 		url: '/fetch',
 		templateUrl: '/views/partials/fetch.html'
-		// controller: " "
 	})
 	.state('favorites', {
 		url: '/favorites',
 		templateUrl: '/views/partials/favorites.html'
-		// controller: " "
 	});
 }); // end adoptionApp states configuration
 
