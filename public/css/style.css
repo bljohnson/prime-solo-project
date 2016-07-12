@@ -1,5 +1,5 @@
 .jumbotron h2 {
-	font-size: 50px;
+	font-size: 60px;
 	margin-bottom: 3%;
 	text-align: center;
 }
@@ -7,12 +7,12 @@
 .jumbotron h4 {
 	text-align: center;
 }
-
+/*
 .jumbotron p {
   font-size: 20px;
   text-align: center;
   margin: 1% 15%;
-}
+}*/
 
 .jumbotron form {
 	border: 2px solid black;
@@ -42,7 +42,7 @@ img {
 }*/
 
 table tr:first-child th {
-  background-color: rgb(76,185,246);
+  background-color: rgb(213,184,135);
 }
 
 .navbar-brand {

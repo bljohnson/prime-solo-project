@@ -153,7 +153,8 @@ app.post('/postDog', function(req, res) {
   }); // end newDog save function
 }); // end app.post
 
-// delete dog from dogdb
+
+// delete dog from dogdb (My Favorites view)
 app.post('/deleteDog', function(req, res) {
   console.log('in delete route');
   Dog.findOne({'_id': req.body.id}, function (err, pet) {

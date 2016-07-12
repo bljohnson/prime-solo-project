@@ -1,10 +1,12 @@
 <div ng-controller="SettingsAPIController" ng-init="hitAPI()">
-	<button type="button" name="button" ng-click="hitAPI()">Go Fetch</button>
+	<button type="button" name="button" class="btn btn-success" ng-click="hitAPI()">Go Fetch</button>
 
 
 	<!--display to DOM all search results from API-->
   	<table class="table table-striped">
     		<tr>
+			<th>Add to Favorites</th>
+			<th>Images</th>
 		      <th>Name</th>
 		      <th>Breed(s)</th>
 		      <th>Primary Breed</th>
@@ -22,9 +24,10 @@
 			<th>Location (ZIP Code)</th>
 			<th>Adoption Fee (USD)</th>
 			<th>URL</th>
-			<th>Images</th>
 		</tr>
     		<tr ng-repeat="dog in allDogs">
+			<td><button type="button" name="button" class="btn btn-default" ng-click="addDog()">Add &#128062;</button></td>
+			<td><img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}"/></td>
 		      <td>{{dog.animalName}}</td>
 		      <td>{{dog.animalBreed}}</td>
 			<td>{{dog.animalPrimaryBreed}}</td>
@@ -42,7 +45,6 @@
 			<td>{{dog.animalLocation}}</td>
 			<td>{{dog.animalAdoptionFee}}</td>
 			<td>{{dog.animalUrl}}</td>
-			<td><img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}"/></td>
     		</tr>
   	</table>
 </div>

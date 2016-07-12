@@ -4,12 +4,8 @@ console.log('Hello from script.js!');
 var adoptionApp = angular.module('adoptionApp', ['ui.router']);
 
 adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config allows configuration of app before it boots up
-	$urlRouterProvider.otherwise('/home');
+	$urlRouterProvider.otherwise('/welcome');
 	$stateProvider
-	.state('home', {
-		url: '/indexSansPassport',
-		templateUrl: '/views/indexSansPassport.html'
-	})
 	.state('welcome', {
 		url: '/welcome',
 		templateUrl: '/views/partials/welcome.html'
@@ -86,7 +82,8 @@ adoptionApp.controller('FavoriteDogsController', ['$scope', '$http', function ($
 	}); // end 'then' success response (success and myError functions)
 	 }; // end getDogs function
 
-	 // delete dog from DOM
+
+	 // delete dog from DOM (My Favorites view)
 	 $scope.deleteDog = function (index) {
 	   var deleteOne = $scope.allDogs[index];
 	   $scope.allDogs.splice(index, 1);
@@ -113,7 +110,7 @@ adoptionApp.controller('FavoriteDogsController', ['$scope', '$http', function ($
 
 
 
-// ---------------------------------------------------------------------------------------------------------------------------------------
+///////////////////// ------------------------------------------------------------------------------------------------------
 
 adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($scope, $http) {
 	console.log('SettingsAPIController loaded');
@@ -229,8 +226,6 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 				}).then(function(response){
 					console.log("response.data: ", response.data);
 					$scope.showMeTheDogs.push(response.data.data); // whole API data structure
-					// console.log( "$scope.showMeTheDogs: ", $scope.showMeTheDogs );
-					// console.log( "$scope.showMeTheDogs[0]: ", $scope.showMeTheDogs[0] );
 					$scope.allDogs = $scope.showMeTheDogs[0]; // empty object that contains actual dog objects
 			}); // end $http post
 
@@ -239,7 +234,3 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 		}); // end myError and .then function response
   	}; // end hitAPI function
 }]); // end SettingsAPIController
-
-
-
-// -------------------------------------------------------------------------------------------------------------
