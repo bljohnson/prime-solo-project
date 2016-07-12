@@ -5,9 +5,22 @@ var Schema = mongoose.Schema; // enable use of schema property
 var dogSchema = new Schema ({
 	name: {type: String},
       age: {type: String},
-      breed: {type: String},
-	gender: {type: String}
-	// need to add more fields.................
+	exact_birthdate: {type: String},
+	gender: {type: String},
+	breed: {type: String},
+	primary_breed: {type: String},
+	size: {type: String},
+	location: {type: Number},
+	radius: {type: Number},
+	energy: {type: String},
+	dog_friendly: {type: String},
+	cat_friendly: {type: String},
+	kid_friendly: {type: String},
+	housetrained: {type: String},
+	cratetrained: {type: String},
+	description: {type: String},
+	adoption_fee: {type: Number},
+	animal_url: {type: String}
 }); // end dogSchema
 
 var Dog = mongoose.model('favoritedogs', dogSchema); // creates model from dogSchema called Dog, and stores in favoritedogs 'collection' of documents within adoptiondb

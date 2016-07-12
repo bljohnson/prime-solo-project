@@ -1,40 +1,15 @@
 <h1>Fetch Me Dogs That Are...</h1>
 
-<div ng-controller="HitApiController">
-
 <!-- trying to show one dog at a time from API - not working right now -->
-	<div ng-repeat="doggie in showMeTheDogs">
+	<!-- <div ng-repeat="doggie in showMeTheDogs">
 		<div ng-if="dog_index == $index">
 			{{doggie.data}}
 		</div>
 	</div>
-	<button type="button" name="button" ng-click="next()">Next Dog</button>
+	<button type="button" name="button" ng-click="next()">Next Dog</button> -->
 
-
-	<!-- example dog to DOM -->
-<!-- <div ng-repeat="dog in showMeTheDogs"> -->
-	<!-- Name: {{dog.data[3617177].animalName}} <br>
-	Breed(s): {{dog.data[3617177].animalBreed}} <br>
-	Primary Breed: {{dog.data[3617177].animalPrimaryBreed}} <br>
-	Gender: {{dog.data[3617177].animalSex}} <br>
-	General Age: {{dog.data[3617177].animalGeneralAge}} <br>
-	Exact Birthday: {{dog.data[3617177].animalBirthdateExact}} <br>
-	Location: {{dog.data[3617177].animalLocation}} <br>
-	General Size: {{dog.data[3617177].animalGeneralSizePotential}} <br>
-	Housetrained: {{dog.data[3617177].animalHousetrained}} <br>
-	Cratetrained: {{dog.data[3617177].animalCratetrained}} <br>
-	Energy Level: {{dog.data[3617177].animalEnergyLevel}} <br>
-	Good with Dogs: {{dog.data[3617177].animalOKWithDogs}} <br>
-	Good with Cats: {{dog.data[3617177].animalOKWithCats}} <br>
-	Good with Kids: {{dog.data[3617177].animalOKWithKids}} <br>
-	Description: {{dog.data[3617177].animalDescriptionPlain}} <br>
-	Adoption Fee: {{dog.data[3617177].animalAdoptionFee}} <br>
-	URL: {{dog.data[3617177].animalUrl}} <br>
-</div> -->
 
 <form>
-	<button type="button" name="button" ng-click="hitAPI()">Hit API</button>
-
 	<div>
 		<h4>5-digit ZIP Code:</h4>
 		<input type="text" name="location" ng-model="zipcodeIn" value="" placeholder="e.g. 80022"><br><br>
@@ -108,7 +83,14 @@
 		<input type="radio" name="cratetrained" ng-model="cratetrainedIn" value="noPreference" checked> No Preference<br><br>
 	</div>
 
-<!-- *****STRETCH GOAL???***** Have to use the value to search API and NOT return those results. Also, user need to be able to check as many as want. -->
+	<div ng-controller="SettingsAPIController">
+		<!-- <button type="button" name="button" ng-click="hitAPI()">Hit API</button> -->
+		<button type="button" name="button" ng-click="saveSettings()">Save Settings</button>
+	</div>
+
+</form>
+
+<!-- Stretch goal. Use the value to search API and DON'T return those results. Check as many as want. -->
 	<!-- <div ng-model="showstoppers">
 		<h4>Traits you would not tolerate in a dog (check all that apply):</h4>
 	 	<input type="checkbox" name="specialNeeds" value="specialNeeds"> Has special needs/requires ongoing medical care<br>
@@ -125,7 +107,3 @@
 		<input type="checkbox" name="noYoungKids" value="noYoungKids"> Cannot live with young kids<br>
 		<input type="checkbox" name="vocal" value="vocal"> Vocal<br>
 	</div> -->
-
-</form>
-
-</div>

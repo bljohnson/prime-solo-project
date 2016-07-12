@@ -1,15 +1,51 @@
-<p>
-	in fetch.html
-</p>
-
-<!--TESTING DB CONNECTION/ROUTES - eventually needs to pull from Rescue Groups API in combination with user preferences-->
-<!-- <input type="text" ng-model="nameIn" value="" placeholder="Dog's Name">
-<input type="text" ng-model="ageIn" value="" placeholder="Dog's Age">
-<input type="text" ng-model="breedIn" value="" placeholder="Dog's Breed(s)">
-
-<button type="button" name="addButton" ng-click="addDog()">Add to Favorites</button> -->
+<div ng-controller="SettingsAPIController" ng-init="hitAPI()">
+	<button type="button" name="button" ng-click="hitAPI()">Go Fetch</button>
 
 
+	<!--display to DOM all search results from API-->
+  	<table class="table table-striped">
+    		<tr>
+		      <th>Name</th>
+		      <th>Breed(s)</th>
+		      <th>Primary Breed</th>
+			<th>Gender</th>
+			<th>Age</th>
+			<th>Birthdate</th>
+			<th>Size</th>
+			<th>Good with Dogs</th>
+			<th>Good with Cats</th>
+			<th>Good with Kids</th>
+			<th>Energy Level</th>
+			<th>Housetrained</th>
+			<th>Cratetrained</th>
+			<th>Description</th>
+			<th>Location (ZIP Code)</th>
+			<th>Adoption Fee (USD)</th>
+			<th>URL</th>
+			<th>Images</th>
+		</tr>
+    		<tr ng-repeat="dog in allDogs">
+		      <td>{{dog.animalName}}</td>
+		      <td>{{dog.animalBreed}}</td>
+			<td>{{dog.animalPrimaryBreed}}</td>
+			<td>{{dog.animalSex}}</td>
+			<td>{{dog.animalGeneralAge}}</td>
+			<td>{{dog.animalBirthdateExact}}</td>
+			<td>{{dog.animalGeneralSizePotential}}</td>
+			<td>{{dog.animalOKWithDogs}}</td>
+			<td>{{dog.animalOKWithCats}}</td>
+			<td>{{dog.animalOKWithKids}}</td>
+			<td>{{dog.animalEnergyLevel}}</td>
+			<td>{{dog.animalHousetrained}}</td>
+			<td>{{dog.animalCratetrained}}</td>
+			<td>{{dog.animalDescriptionPlain}}</td>
+			<td>{{dog.animalLocation}}</td>
+			<td>{{dog.animalAdoptionFee}}</td>
+			<td>{{dog.animalUrl}}</td>
+			<td><img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}"/></td>
+    		</tr>
+  	</table>
+</div>
 
 
 <!-- testing modal functioning -->
