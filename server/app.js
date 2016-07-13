@@ -119,10 +119,10 @@ app.get('/getSettings', function(req, res){
 
 
 
-////////////////// --------------------------------------------------------------------------------------------------------------
+///////////////////////////// --------------------------------------------------------------------------------------------------------------
 
 
-// get all favorited dogs in adoptiondb
+// get all favorited dogs saved in db
 app.get('/getFavoriteDogs', function(req, res){
 	Dog.find()
   	.then(function(data){
@@ -131,7 +131,7 @@ app.get('/getFavoriteDogs', function(req, res){
 }); // end app.get
 
 
-// post favorited dog to adoptiondb
+// post favorited dog to db
 app.post('/postDog', function(req, res) {
 	console.log('dog posted successfully to Favorites list');
   	console.log('req.body = ', req.body);
@@ -169,7 +169,7 @@ app.post('/postDog', function(req, res) {
 }); // end app.post
 
 
-// delete dog from adoptiondb (My Favorites view)
+// delete dog from db (My Favorites view)
 app.post('/deleteDog', function(req, res) {
  	console.log('in delete route');
   	Dog.findOne({'_id': req.body.id}, function (err, pet) {

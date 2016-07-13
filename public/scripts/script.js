@@ -84,8 +84,8 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 	$scope.currentUser = {}; // stores most recently saved search settings
 	$scope.showMeTheDogs = []; // stores all dogs from search results
 	$scope.allDogs = {}; // stores empty object that contains actual dog objects from API
-	$scope.allDogsArray = []; // stores empty aray that contains actual dog objects from API
 	$scope.sendDogToDb = {}; // stores specific 'favorited' dog object to be sent to db
+	$scope.favoriteDogs = []; // stores favorited dogs saved in db
 
 	$scope.saveSettings = function () { // saves most recently entered settings to db
 		console.log('saveSettings button clicked');
@@ -229,13 +229,13 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 
 	// define function to get Favorited dogs from dogdb
 	$scope.getFavoriteDogs = function () {
-		console.log('add to favorites button clicked');
+		console.log('getFavoriteDogs button clicked');
 	   	$http({
 	     		method: 'GET',
 	     		url: '/getFavoriteDogs'
 		}).then(function(response){
 	     		$scope.favoriteDogs = response.data; // .data is the data in the response; favoriteDogs is the array of saved dog objects in dogdb
-	     		console.log($scope.favoriteDogs);
+	     		console.log('$scope.favoriteDogs: ', $scope.favoriteDogs);
 	   	}, function myError(response){
 	     		console.log(response.statusText);
 		}); // end 'then' success response (success and myError functions)
