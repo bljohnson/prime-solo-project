@@ -7,6 +7,7 @@
     		<tr>
 			<th>Add to Favorites</th>
 			<th>Images</th>
+			<th>API ID?</th>
 		      <th>Name</th>
 		      <th>Breed(s)</th>
 		      <th>Primary Breed</th>
@@ -27,9 +28,9 @@
 		</tr>
 		<!-- allDogs is array of dog objects returned from API -->
     		<tr ng-repeat="dog in allDogs">
-			<td><button type="button" name="button" class="btn btn-default" ng-click="addDog()">Add &#128062;</button></td>
+			<td><button type="button" name="button" class="btn btn-default" ng-click="addDog($index);">Add &#128062;</button></td>
 			<td><img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}"/></td>
-		      <td>{{dog.animalName}}</td>
+			<td>{{dog.animalName}}</td>
 		      <td>{{dog.animalBreed}}</td>
 			<td>{{dog.animalPrimaryBreed}}</td>
 			<td>{{dog.animalSex}}</td>

@@ -79,11 +79,13 @@ adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config all
 
 adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($scope, $http) {
 	console.log('SettingsAPIController loaded');
-
+	// available to all functions within controller
 	$scope.objectToSendToDb = {}; // most recently entered settings
 	$scope.currentUser = {}; // stores most recently saved search settings
 	$scope.showMeTheDogs = []; // stores all dogs from search results
 	$scope.allDogs = {}; // stores empty object that contains actual dog objects from API
+	$scope.allDogsArray = []; // stores empty aray that contains actual dog objects from API
+	$scope.sendDogToDb = {}; // stores specific 'favorited' dog object to be sent to db
 
 	$scope.saveSettings = function () { // saves most recently entered settings to db
 		console.log('saveSettings button clicked');
@@ -203,39 +205,24 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	// define function that will create object to send to adoptiondb (THIS SHOULD JUST BE DOGS THE USER 'FAVORITES')
-	$scope.addDog = function (index) {
-		console.log('addDog button clicked');
+	// add favorite dog to 'favoritedogs' collection in db
+	$scope.addDog = function (dogNumber) { // dogNumber is index # assigned by ng-repeat
 		event.preventDefault();
-		var sendDogToDb = { // this needs to be what returns from API for that specific dog
-	    		name: $scope.allDogs[9826489].animalName, // hard code in a search result to test
-	    		age: $scope.allDogs[9826489].animalGeneralAge,
-		    	birthdate: $scope.allDogs[9826489].animalBirthdateExact,
-		    	gender: $scope.allDogs[9826489].animalSex,
-		    	breed: $scope.allDogs[9826489].animalBreed,
-		    	primaryBreed: $scope.allDogs[9826489].animalPrimaryBreed,
-	    		size: $scope.allDogs[9826489].animalGeneralSizePotential,
-	    		location: $scope.allDogs[9826489].animalLocation,
-	    		energy: $scope.allDogs[9826489].animalEnergyLevel,
-	    		dogFriendly: $scope.allDogs[9826489].animalOKWithDogs,
-	    		catFriendly: $scope.allDogs[9826489].animalOKWithCats,
-	    		kidFriendly: $scope.allDogs[9826489].animalOKWithKids,
-	    		housetrained: $scope.allDogs[9826489].animalHousetrained,
-	    		cratetrained: $scope.allDogs[9826489].animalCratetrained,
-	    		description: $scope.allDogs[9826489].animalDescriptionPlain,
-	    		adoptionFee: $scope.allDogs[9826489].animalAdoptionFee,
-	    		images: $scope.allDogs[9826489].animalPictures[0].urlSecureFullsize, // want to save ALL the fullsize images eventually if dog has multiple (in API are in array)
-	    		url: $scope.allDogs[9826489].animalUrl
-	  	};
-		console.log('sendDogToDb: ', sendDogToDb);
-		// make a call to server with object to be stored in db
+		console.log('addDog button clicked - index#: ' + dogNumber);
+		var indexer = 0;
+		for (var dogId in $scope.allDogs) { // dogId is dog's API ID #. $scope.allDogs is all the dog objects from search results
+			if (indexer == dogNumber) {
+				console.log("favorite this dog: ", dogId);
+			   	sendDogToDb = $scope.allDogs[dogId]; // the specific dog whose 'add' button was clicked
+	   		   	console.log('sendDogToDb: ', sendDogToDb);
+			}
+			indexer++;
+		}
 		$http({
-	   		method: 'POST',
-	    		url: '/postDog',
-	    		data: sendDogToDb
-	  	});
+			method: 'POST',
+			url: '/postDog',
+			data: sendDogToDb
+		});
 	}; // end addDog function
 
 
