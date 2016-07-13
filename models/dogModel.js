@@ -11,7 +11,6 @@ var dogSchema = new Schema ({
 	primary_breed: {type: String},
 	size: {type: String},
 	location: {type: Number},
-	radius: {type: Number},
 	energy: {type: String},
 	dog_friendly: {type: String},
 	cat_friendly: {type: String},
@@ -20,7 +19,8 @@ var dogSchema = new Schema ({
 	cratetrained: {type: String},
 	description: {type: String},
 	adoption_fee: {type: Number},
-	animal_url: {type: String}
+	animal_url: {type: String},
+	images: {type: String}
 }); // end dogSchema
 
 var Dog = mongoose.model('favoritedogs', dogSchema); // creates model from dogSchema called Dog, and stores in favoritedogs 'collection' of documents within adoptiondb

@@ -123,49 +123,64 @@ app.get('/getSettings', function(req, res){
 
 
 // get all favorited dogs in adoptiondb
-app.get('/getDogs', function(req, res){
-  Dog.find()
-  .then(function(data){
-    res.send(data);
-  });
+app.get('/getFavoriteDogs', function(req, res){
+	Dog.find()
+  	.then(function(data){
+    		res.send(data);
+  	});
 }); // end app.get
 
-// post to adoptiondb
+
+// post favorited dog to adoptiondb
 app.post('/postDog', function(req, res) {
-  console.log('dog posted successfully to Favorites list');
-  console.log('req.body = ', req.body);
-// creates object to store in adoptiondb using object received by server, property names need to match those in model schema
-  var newDog = new Dog({ // create new Dog to create new instance of Dog model in adoptiondb, using the following values
-    name: req.body.name,
-    age: req.body.age,
-    breed: req.body.breed,
-    gender: req.body.gender
-  });
-// saves object to db. .save is a method specific to Mongoose
-  newDog.save(function(err) {
-    if (err) {
-      console.log(err);
-      res.sendStatus(500);
-    } else {
-      console.log('Dog saved successfully to Favorites list!');
-      res.sendStatus(200);
-    } // end if/else statement
-  }); // end newDog save function
+	console.log('dog posted successfully to Favorites list');
+  	console.log('req.body = ', req.body);
+	// creates object to store in adoptiondb using object received by server, property names need to match those in model schema
+  	var newDog = new Dog({ // create new Dog to create new instance of Dog model in adoptiondb, using the following values
+    		name: req.body.name,
+	    	age: req.body.age,
+	    	exact_birthdate: req.body.birthdate,
+	    	gender: req.body.gender,
+	    	breed: req.body.breed,
+	    	primary_breed: req.body.primaryBreed,
+	    	size: req.body.size,
+	    	location: req.body.location,
+	    	energy: req.body.energy,
+	    	dog_friendly: req.body.dogFriendly,
+	    	cat_friendly: req.body.catFriendly,
+	    	kid_friendly: req.body.kidFriendly,
+	    	housetrained: req.body.housetrained,
+	    	cratetrained: req.body.cratetrained,
+	    	description: req.body.description,
+	    	adoption_fee: req.body.adoptionFee,
+	    	animal_url: req.body.url,
+	    	images: req.body.images,
+  	});
+	// saves object to db. .save is a method specific to Mongoose
+  	newDog.save(function(err) {
+    		if (err) {
+      		console.log(err);
+      		res.sendStatus(500);
+    		} else {
+      		console.log('Dog saved successfully to Favorites list!');
+      		res.sendStatus(200);
+    		} // end if/else statement
+  	}); // end newDog save function
 }); // end app.post
 
 
-// delete dog from dogdb (My Favorites view)
+// delete dog from adoptiondb (My Favorites view)
 app.post('/deleteDog', function(req, res) {
-  console.log('in delete route');
-  Dog.findOne({'_id': req.body.id}, function (err, pet) {
-    if (err) {
-      console.log (err);
-    } else {
-      Dog.remove({'_id': req.body.id}, function (err) {
-        if (err) {
-          console.log ('remove ' + err);
-        }
-      }); // end remove function
-    } // end if/else statement
-  }); // end findOne function
+ 	console.log('in delete route');
+  	Dog.findOne({'_id': req.body.id}, function (err, pet) {
+    	if (err) {
+      	console.log (err);
+    	} else {
+      	Dog.remove({'_id': req.body.id}, function (err) {
+      		if (err) {
+				console.log ('remove ' + err);
+      		}
+      	}); // end remove function
+    	} // end if/else statement
+  	}); // end findOne function
 }); // end app.post

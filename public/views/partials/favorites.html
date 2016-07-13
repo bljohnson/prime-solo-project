@@ -1,7 +1,53 @@
-<div ng-controller='SettingsAPIController'>
-	<p>
-		in favorites.html
-	</p>
-</div>
+<div ng-controller='SettingsAPIController' ng-init="getFavoriteDogs()">
 
-<td><button type="button" name="deleteButton" class="btn btn-default" id="{{dog._id}}" ng-click="deletePet($index)">Delete Pet</button></td>
+	<button type="button" name="button" ng-click="getFavoriteDogs()">Fetch Favorites</button>
+
+
+		<!--display to DOM all search results from API-->
+	  	<table class="table table-striped" class="table-responsive">
+	    		<tr>
+				<th>Remove</th>
+				<th>Images</th>
+			      <th>Name</th>
+			      <th>Breed(s)</th>
+			      <th>Primary Breed</th>
+				<th>Gender</th>
+				<th>Age</th>
+				<th>Birthdate</th>
+				<th>Size</th>
+				<th>Good with Dogs</th>
+				<th>Good with Cats</th>
+				<th>Good with Kids</th>
+				<th>Energy Level</th>
+				<th>Housetrained</th>
+				<th>Cratetrained</th>
+				<th>Description</th>
+				<th>Location (ZIP Code)</th>
+				<th>Adoption Fee (USD)</th>
+				<th>URL</th>
+			</tr>
+			<!-- favoriteDogs is array of saved dog objects in db -->
+	    		<tr ng-repeat="dog in favoriteDogs">
+				<td><button type="button" name="deleteButton" class="btn btn-default" id="{{dog._id}}" ng-click="deleteDog($index)">Remove</button></td>
+				<td><img ng-src="{{dog.images}}"/></td>
+			      <td>{{dog.name}}</td>
+			      <td>{{dog.breed}}</td>
+				<td>{{dog.primary_breed}}</td>
+				<td>{{dog.gender}}</td>
+				<td>{{dog.age}}</td>
+				<td>{{dog.exact_birthdate}}</td>
+				<td>{{dog.size}}</td>
+				<td>{{dog.dog_friendly}}</td>
+				<td>{{dog.cat_friendly}}</td>
+				<td>{{dog.kid_friendly}}</td>
+				<td>{{dog.energy}}</td>
+				<td>{{dog.housetrained}}</td>
+				<td>{{dog.cratetrained}}</td>
+				<td>{{dog.description}}</td>
+				<td>{{dog.location}}</td>
+				<td>{{dog.adoption_fee}}</td>
+				<td>{{dog.animal_url}}</td>
+	    		</tr>
+	  	</table>
+
+</div>

@@ -3,7 +3,7 @@
 
 
 	<!--display to DOM all search results from API-->
-  	<table class="table table-striped">
+  	<table class="table table-striped" class="table-responsive">
     		<tr>
 			<th>Add to Favorites</th>
 			<th>Images</th>
@@ -25,6 +25,7 @@
 			<th>Adoption Fee (USD)</th>
 			<th>URL</th>
 		</tr>
+		<!-- allDogs is array of dog objects returned from API -->
     		<tr ng-repeat="dog in allDogs">
 			<td><button type="button" name="button" class="btn btn-default" ng-click="addDog()">Add &#128062;</button></td>
 			<td><img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}"/></td>

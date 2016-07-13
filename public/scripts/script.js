@@ -48,54 +48,19 @@ adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config all
 
 
 
-
-// // create a controller to define adoptionApp's behavior
-adoptionApp.controller('FavoriteDogsController', ['$scope', '$http', function ($scope, $http) {
-	// code that gets executed when this controller is called
-	// define function that will create object to send to adoptiondb (THIS SHOULD JUST BE DOGS THE USER 'FAVORITES')
-	$scope.addDog = function () {
-	  event.preventDefault();
-	  var sendDogToDb = {
-	    name: $scope.nameIn,
-	    age: $scope.ageIn,
-	    breed: $scope.breedIn,
-	    gender: $scope.genderIn
-	  };
-	  // make a call to server with object to be stored in db
-	  $http({
-	    method: 'POST',
-	    url: '/postDog',
-	    data: sendDogToDb
-	  });
-	}; // end addDog function
-
-	// define function to get Favorited dogs from dogdb
-	$scope.getDogs = function () {
-	   $http({
-	     method: 'GET',
-	     url: '/getDogs'
-	}).then(function(response){
-	     $scope.allDogs = response.data; // .data is the data in the response; allDogs is the array of objects in dogdb
-	     console.log($scope.allDogs);
-	   }, function myError(response){
-	     console.log(response.statusText);
-	}); // end 'then' success response (success and myError functions)
-	 }; // end getDogs function
-
-
 	 // delete dog from DOM (My Favorites view)
-	 $scope.deleteDog = function (index) {
-	   var deleteOne = $scope.allDogs[index];
-	   $scope.allDogs.splice(index, 1);
-	   console.log('deleted dog:' + deleteOne._id);
-	   var dogId = {id: deleteOne._id};
-	   $http({
-	     method: 'POST',
-	     url: '/deleteDog',
-	     data: dogId
-	   });
-	 }; // end deleteDog function
-}]); // end FavoriteDogsController
+	//  $scope.deleteDog = function (index) {
+	//    var deleteOne = $scope.allDogs[index];
+	//    $scope.allDogs.splice(index, 1);
+	//    console.log('deleted dog:' + deleteOne._id);
+	//    var dogId = {id: deleteOne._id};
+	//    $http({
+	//      method: 'POST',
+	//      url: '/deleteDog',
+	//      data: dogId
+	//    });
+	//  }; // end deleteDog function
+// }]); // end FavoriteDogsController
 
 
 
@@ -114,8 +79,12 @@ adoptionApp.controller('FavoriteDogsController', ['$scope', '$http', function ($
 
 adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($scope, $http) {
 	console.log('SettingsAPIController loaded');
+
 	$scope.objectToSendToDb = {}; // most recently entered settings
-	$scope.currentUser = {};
+	$scope.currentUser = {}; // stores most recently saved search settings
+	$scope.showMeTheDogs = []; // stores all dogs from search results
+	$scope.allDogs = {}; // stores empty object that contains actual dog objects from API
+
 	$scope.saveSettings = function () { // saves most recently entered settings to db
 		console.log('saveSettings button clicked');
 		$scope.objectToSendToDb = {
@@ -159,8 +128,6 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 			console.log( '# of sets of user settings:',  userSettings.length  );
 			$scope.currentUser = userSettings[ Number( userSettings.length ) -1 ]; // gets most recently saved settings. userSettings = array of objects, each has set of settings.
 			console.log( 'current settings - status:  ', $scope.currentUser.status  );
-
-			$scope.showMeTheDogs=[]; // stores all dogs from search results
 
 			var data = {
 				apikey: '0mOrCBOl', // need to figure out how to hide in a file that gets exported/ng-included in
@@ -233,4 +200,76 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 			console.log(response.statusText);
 		}); // end myError and .then function response
   	}; // end hitAPI function
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// define function that will create object to send to adoptiondb (THIS SHOULD JUST BE DOGS THE USER 'FAVORITES')
+	$scope.addDog = function (index) {
+		console.log('addDog button clicked');
+		event.preventDefault();
+		var sendDogToDb = { // this needs to be what returns from API for that specific dog
+	    		name: $scope.allDogs[9826489].animalName, // hard code in a search result to test
+	    		age: $scope.allDogs[9826489].animalGeneralAge,
+		    	birthdate: $scope.allDogs[9826489].animalBirthdateExact,
+		    	gender: $scope.allDogs[9826489].animalSex,
+		    	breed: $scope.allDogs[9826489].animalBreed,
+		    	primaryBreed: $scope.allDogs[9826489].animalPrimaryBreed,
+	    		size: $scope.allDogs[9826489].animalGeneralSizePotential,
+	    		location: $scope.allDogs[9826489].animalLocation,
+	    		energy: $scope.allDogs[9826489].animalEnergyLevel,
+	    		dogFriendly: $scope.allDogs[9826489].animalOKWithDogs,
+	    		catFriendly: $scope.allDogs[9826489].animalOKWithCats,
+	    		kidFriendly: $scope.allDogs[9826489].animalOKWithKids,
+	    		housetrained: $scope.allDogs[9826489].animalHousetrained,
+	    		cratetrained: $scope.allDogs[9826489].animalCratetrained,
+	    		description: $scope.allDogs[9826489].animalDescriptionPlain,
+	    		adoptionFee: $scope.allDogs[9826489].animalAdoptionFee,
+	    		images: $scope.allDogs[9826489].animalPictures[0].urlSecureFullsize, // want to save ALL the fullsize images eventually if dog has multiple (in API are in array)
+	    		url: $scope.allDogs[9826489].animalUrl
+	  	};
+		console.log('sendDogToDb: ', sendDogToDb);
+		// make a call to server with object to be stored in db
+		$http({
+	   		method: 'POST',
+	    		url: '/postDog',
+	    		data: sendDogToDb
+	  	});
+	}; // end addDog function
+
+
+
+	// define function to get Favorited dogs from dogdb
+	$scope.getFavoriteDogs = function () {
+		console.log('add to favorites button clicked');
+	   	$http({
+	     		method: 'GET',
+	     		url: '/getFavoriteDogs'
+		}).then(function(response){
+	     		$scope.favoriteDogs = response.data; // .data is the data in the response; favoriteDogs is the array of saved dog objects in dogdb
+	     		console.log($scope.favoriteDogs);
+	   	}, function myError(response){
+	     		console.log(response.statusText);
+		}); // end 'then' success response (success and myError functions)
+	}; // end getDogs function
+
+
+	// delete dog from DOM (My Favorites view)
+      $scope.deleteDog = function (index) {
+      	var deleteOne = $scope.favoriteDogs[index];
+        	$scope.favoriteDogs.splice(index, 1);
+        	console.log('deleted dog:' + deleteOne._id);
+        	var dogId = {id: deleteOne._id};
+        	$http({
+          		method: 'POST',
+          		url: '/deleteDog',
+          		data: dogId
+        	});
+      }; // end deleteDog function
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 }]); // end SettingsAPIController
