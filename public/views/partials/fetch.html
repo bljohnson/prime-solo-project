@@ -55,44 +55,80 @@
 
 
 	<md-content class="md-padding" layout-xs="column" layout="row">
-	    <div flex-xs="" flex-gt-lg="100" layout="column">
-	      <md-card id="dogCard" ng-repeat="dog in allDogs">
-	        <img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}" class="md-card-image" alt="adoptable dog">
-		  <md-card-title>
-	          <md-card-title-text>
-	            <span class="md-headline">Action buttons</span>
-	          </md-card-title-text>
-	        </md-card-title>
-        	<md-card-content>
-	          <p>
-			    {{dog.animalName}}
-	    		    {{dog.animalBreed}}
-	    		    {{dog.animalPrimaryBreed}}
-		    	    {{dog.animalSex}}
-		    	    {{dog.animalGeneralAge}}
-			    {{dog.animalBirthdateExact}}
-    			    {{dog.animalGeneralSizePotential}}
-    			    {{dog.animalOKWithDogs}}
-			    {{dog.animalOKWithCats}}
-			    {{dog.animalOKWithKids}}
-    			    {{dog.animalEnergyLevel}}
-    			    {{dog.animalHousetrained}}
-    			    {{dog.animalCratetrained}}
-    			    {{dog.animalDescriptionPlain}}
-    			    {{dog.animalAdoptionFee}}
-    			    {{dog.animalLocation}}
-    			    {{dog.locationName}}
-    			    {{dog.locationPhone}}
-    			    <a href = "{{dog.animalVideoUrls[0].videoUrl}}" target="_blank">View Video</a>
-	          </p>
-	        </md-card-content>
-	        <md-card-actions layout="row" layout-align="end center">
-	          <md-button type="button" name="button" class="btn btn-default" ng-click="hideDog();">NAH</md-button>
-		    <!-- <button type="button" name="button" class="btn btn-default" ng-click="addDog($index);">Add &#128062;</button> -->
-	          <md-button type="button" name="button" class="btn btn-default" ng-click="addDog($index);">LOVE &#128062;</md-button>
-	        </md-card-actions>
-      </md-card>
-</md-content>
+		<div flex-xs="" flex-gt-xs="35" layout="column">
+	      	<md-card id="dogCard" ng-repeat="dog in allDogs">
+	        		<img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}" class="md-card-image" alt="adoptable dog">
+		  		<md-card-title>
+	          			<md-card-title-text>
+	            			<span class="md-headline">{{dog.animalName}}</span>
+	          			</md-card-title-text>
+	        		</md-card-title>
+        			<md-card-content>
+					<p>
+						Breed(s): {{dog.animalBreed}}
+				    	</p>
+				    	<p>
+			    		    	Primary Breed: {{dog.animalPrimaryBreed}}
+				    	</p>
+				    	<p>
+				    	    	Gender: {{dog.animalSex}}
+				    	</p>
+				    	<p>
+				    	    	Age: {{dog.animalGeneralAge}}
+				    	</p>
+			          	<p>
+					    	Birthdate: {{dog.animalBirthdateExact}}
+				    	</p>
+				    	<p>
+					    	Size:  {{dog.animalGeneralSizePotential}}
+				    	</p>
+				    	<p>
+				  	    	Dog Friendly: {{dog.animalOKWithDogs}}
+				    	</p>
+					<p>
+					    	Cat Friendly: {{dog.animalOKWithCats}}
+				    	</p>
+				    	<p>
+					    	Kid Friendly: {{dog.animalOKWithKids}}
+				    	</p>
+				    	<p>
+				  	    	Energy Level: {{dog.animalEnergyLevel}}
+				    	</p>
+					<p>
+					    	Housetrained: {{dog.animalHousetrained}}
+				    	</p>
+				    	<p>
+					    	Cratetrained: {{dog.animalCratetrained}}
+				    	</p>
+				    	<p>
+				  	    	Description: {{dog.animalDescriptionPlain}}
+				    	</p>
+					<p>
+					    	Adoption Fee (USD): {{dog.animalAdoptionFee}}
+				    	</p>
+				    	<p>
+					    	Location (ZIP Code): {{dog.animalLocation}}
+				    	</p>
+				    	<p>
+				  	    	Location (Name): {{dog.locationName}}
+				    	</p>
+					<p>
+						Location (Phone): {{dog.locationPhone}}
+					</p>
+					<p>
+						<a href = "{{dog.animalVideoUrls[0].videoUrl}}" target="_blank">View My Video!</a>
+	          			</p>
+	        		</md-card-content>
+	        		<md-card-actions layout="row" layout-align="end center">
+	          			<md-button type="button" name="button" class="btn btn-default" aria-label="thumbsDown" ng-click="hideDog();">
+						<ng-md-icon icon="thumb_down"></ng-md-icon>
+					</md-button>
+	          			<md-button type="button" name="button" class="btn btn-default" aria-label="thumbsUp" ng-click="addDog($index);">
+						<ng-md-icon icon="thumb_up"></ng-md-icon>
+					</md-button>
+	        		</md-card-actions>
+      		</md-card>
+	</md-content>
 
 
 

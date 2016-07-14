@@ -1,7 +1,7 @@
 console.log('Hello from script.js!');
 
 // will need to also inject ngDialog as dependency if use modals in Favorites list
-var adoptionApp = angular.module('adoptionApp', ['ui.router', 'ngMaterial']);
+var adoptionApp = angular.module('adoptionApp', ['ui.router', 'ngMaterial', 'ngMdIcons']);
 
 adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config allows configuration of app before it boots up
 	$urlRouterProvider.otherwise('/welcome');
@@ -27,24 +27,6 @@ adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config all
 		templateUrl: '/views/partials/favorites.html'
 	});
 }); // end adoptionApp states configuration
-
-
-
-// trying to show one dog at a time from search results
-// adoptionApp.controller('HitApiController', ['$scope', '$http', function ($scope, $http) {
-// 	$scope.showMeTheDogs = []; // empty array to push dog data to
-// 	$scope.allDogs=[];
-//   	$scope.dog_index = 0;
-//   	$scope.dog = {};
-//   	$scope.next = function () {
-// 	  	if ($scope.dog_index >= $scope.showMeTheDogs.length - 1) {
-// 		  	$scope.dog_index = 0;
-// 	  	} else {
-// 		  	$scope.dog_index++;
-// 	  	}
-// 	  	console.log($scope.showMeTheDogs.length + '/' + $scope.dog_index);
-//   	}; // end .next
-// }]);
 
 
 
@@ -178,23 +160,7 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 					console.log("response.data: ", response.data);
 					$scope.showMeTheDogs.push(response.data.data); // whole API data structure
 					$scope.allDogs = $scope.showMeTheDogs[0]; // empty object that contains actual dog objects
-
-	// 				function decodeHtml() {
- //    	// 					var txt = document.createElement("textarea");
- //    	// 					txt.innerHTML = html;
- //    	// 					return txt.value;
-	// 				// }
-	// 				// document.getElementById('table').onsubmit = function(e) {
- //    	// 					e.preventDefault();
- //    						var input = document.getElementById('description').text;
- //    						var output = decodeHtml(input);
- //    						alert(output);
-	// 				}
-	//
-	// 				decodeHtml();
-
 			}); // end $http post
-
 		}, function myError(response) {
 			console.log(response.statusText);
 		}); // end myError and .then function response
