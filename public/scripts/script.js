@@ -1,7 +1,7 @@
 console.log('Hello from script.js!');
 
 // will need to also inject ngDialog as dependency if use modals in Favorites list
-var adoptionApp = angular.module('adoptionApp', ['ui.router']);
+var adoptionApp = angular.module('adoptionApp', ['ui.router', 'ngMaterial']);
 
 adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config allows configuration of app before it boots up
 	$urlRouterProvider.otherwise('/welcome');
@@ -48,30 +48,12 @@ adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config all
 
 
 
-	 // delete dog from DOM (My Favorites view)
-	//  $scope.deleteDog = function (index) {
-	//    var deleteOne = $scope.allDogs[index];
-	//    $scope.allDogs.splice(index, 1);
-	//    console.log('deleted dog:' + deleteOne._id);
-	//    var dogId = {id: deleteOne._id};
-	//    $http({
-	//      method: 'POST',
-	//      url: '/deleteDog',
-	//      data: dogId
-	//    });
-	//  }; // end deleteDog function
-// }]); // end FavoriteDogsController
-
-
-
-
 // // test modal functionality
 // adoptionApp.controller('ModalController', function ($scope, ngDialog) {
 // 	$scope.openModal = function() {
-// 		ngDialog.open({ template: 'partials/about.html', className: 'ngdialog-theme-default' });
+// 		ngDialog.open({ template: '/public/views/partials/about.html', className: 'ngdialog-theme-default' });
 // 	};
 // }); // end ModalController
-
 
 
 
@@ -183,7 +165,7 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 							{fieldName: "animalCratetrained",
 							operation: "equals",
 							criteria:  $scope.currentUser.cratetrained}],
-					fields: ["animalName", "animalBreed", "animalPrimaryBreed", "animalSex", "animalGeneralAge", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalGeneralSizePotential", "animalBirthdateExact", "animalOKWithDogs", "animalOKWithCats", "animalOKWithKids", "animalHousetrained", "animalCratetrained", "animalUrl", "animalAdoptionFee", "animalPictures"] // info from API we want to return
+					fields: ["animalName", "animalBreed", "animalPrimaryBreed", "animalSex", "animalGeneralAge", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalGeneralSizePotential", "animalBirthdateExact", "animalOKWithDogs", "animalOKWithCats", "animalOKWithKids", "animalHousetrained", "animalCratetrained", "animalAdoptionFee", "animalPictures", "animalVideoUrls", "locationName", "animalId", "locationPhone"] // info from API we want to return
 				} // end search
 			}; // end var data
 
@@ -196,13 +178,27 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 					console.log("response.data: ", response.data);
 					$scope.showMeTheDogs.push(response.data.data); // whole API data structure
 					$scope.allDogs = $scope.showMeTheDogs[0]; // empty object that contains actual dog objects
+
+	// 				function decodeHtml() {
+ //    	// 					var txt = document.createElement("textarea");
+ //    	// 					txt.innerHTML = html;
+ //    	// 					return txt.value;
+	// 				// }
+	// 				// document.getElementById('table').onsubmit = function(e) {
+ //    	// 					e.preventDefault();
+ //    						var input = document.getElementById('description').text;
+ //    						var output = decodeHtml(input);
+ //    						alert(output);
+	// 				}
+	//
+	// 				decodeHtml();
+
 			}); // end $http post
 
 		}, function myError(response) {
 			console.log(response.statusText);
 		}); // end myError and .then function response
   	}; // end hitAPI function
-
 
 
 	// add favorite dog to 'favoritedogs' collection in db
@@ -227,7 +223,7 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 
 
 
-	// define function to get Favorited dogs from dogdb
+	// define function to get favorited dogs from dogdb
 	$scope.getFavoriteDogs = function () {
 		console.log('getFavoriteDogs button clicked');
 	   	$http({
@@ -256,7 +252,10 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
       }; // end deleteDog function
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	// removes dog from DOM (search results page) on button click
+	$scope.hideDog = function () {
+		var noThanks = angular.element(document.querySelector('#dogCard'));
+         	noThanks.remove();
+	};
 
 }]); // end SettingsAPIController

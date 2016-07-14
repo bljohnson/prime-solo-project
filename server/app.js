@@ -153,8 +153,10 @@ app.post('/postDog', function(req, res) {
 	    	cratetrained: req.body.animalCratetrained,
 	    	description: req.body.animalDescriptionPlain,
 	    	adoption_fee: req.body.animalAdoptionFee,
-	    	animal_url: req.body.animalUrl,
+	    	location_name: req.body.locationName,
+		location_phone: req.body.locationPhone,
 	    	images: req.body.animalPictures[0].urlSecureFullsize,
+		video: req.body.animalVideoUrls
   	});
 	// saves object to db. .save is a method specific to Mongoose
   	newDog.save(function(err) {

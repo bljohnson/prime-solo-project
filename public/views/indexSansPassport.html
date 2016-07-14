@@ -5,7 +5,11 @@
 		<title>Search & Rescue</title>
 		<script src ="/vendors/angular.min.js" charset="utf-8"></script>
 		<script src="/vendors/angular-ui-router.js" charset="utf-8"></script>
+		<script src="/vendors/angular-animate.min.js" charset="utf-8"></script>
+		<script src="/vendors/angular-aria.min.js" charset="utf-8"></script>
+		<script src="/vendors/angular-material.min.js" charset="utf-8"></script>
 		<script src="/scripts/script.js" charset="utf-8"></script>
+		<link rel="stylesheet" href="/vendors/angular-material.min.css" media="screen" title="no title" charset="utf-8">
 		<link rel="stylesheet" href="/vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
 		<link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
 	</head>
@@ -24,7 +28,12 @@
 
 		<!-- where content of each 'state' will be injected -->
 		<div class="container">
-			<div ui-view></div>
+			<!-- <md-content class="md-padding" >
+	         	<div layout="row" layout-gt-xs="column" >
+	            <md-card flex flex-gt-xs="30">
+			<md-card-content> -->
+				<div ui-view></div>
+			<!-- </md-card-content> -->
 		</div>
 
 		<footer class="footer">

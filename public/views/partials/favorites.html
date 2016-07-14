@@ -1,13 +1,13 @@
 <div ng-controller='SettingsAPIController' ng-init="getFavoriteDogs()">
 
-	<button type="button" name="button" ng-click="getFavoriteDogs()">Fetch Favorites</button>
+	<button type="button" name="button" class="btn btn-default" ng-click="getFavoriteDogs()">Fetch Favorites</button>
 
 
 		<!--display to DOM all search results from API-->
 	  	<table class="table table-striped" class="table-responsive">
 	    		<tr>
 				<th>Remove</th>
-				<th>Images</th>
+				<th>Image(s)</th>
 			      <th>Name</th>
 			      <th>Breed(s)</th>
 			      <th>Primary Breed</th>
@@ -22,9 +22,11 @@
 				<th>Housetrained</th>
 				<th>Cratetrained</th>
 				<th>Description</th>
-				<th>Location (ZIP Code)</th>
 				<th>Adoption Fee (USD)</th>
-				<th>URL</th>
+				<th>Location (ZIP Code)</th>
+				<th>Location Name)</th>
+				<th>Location Phone #</th>
+				<th>Video(s)</th>
 			</tr>
 			<!-- favoriteDogs is array of saved dog objects in db -->
 	    		<tr ng-repeat="dog in favoriteDogs">
@@ -44,9 +46,11 @@
 				<td>{{dog.housetrained}}</td>
 				<td>{{dog.cratetrained}}</td>
 				<td>{{dog.description}}</td>
-				<td>{{dog.location}}</td>
 				<td>{{dog.adoption_fee}}</td>
-				<td>{{dog.animal_url}}</td>
+				<td>{{dog.location}}</td>
+				<td>{{dog.location_name}}</td>
+				<td>{{dog.location_phone}}</td>
+				<td>{{dog.vieo}}</td>
 	    		</tr>
 	  	</table>
 

@@ -1,3 +1,14 @@
+body {
+  width:100%;
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
+
+/*md-content {
+  background-color: rgb(172,87,130);
+}*/
+
 .jumbotron h2 {
 	font-size: 60px;
 	margin-bottom: 3%;

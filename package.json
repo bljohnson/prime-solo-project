@@ -11,6 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.5.7",
+    "angular-animate": "^1.5.7",
+    "angular-aria": "^1.5.7",
+    "angular-material": "^1.1.0-rc.5",
     "angular-ui-router": "^0.3.1",
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",

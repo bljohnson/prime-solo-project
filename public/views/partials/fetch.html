@@ -1,13 +1,12 @@
-<div ng-controller="SettingsAPIController" ng-init="hitAPI()">
-	<button type="button" name="button" class="btn btn-success" ng-click="hitAPI()">Go Fetch</button>
+<div ng-controller="SettingsAPIController" ng-init="hitAPI()" ng-cloak="">
+	<!-- <button type="button" name="button" class="btn btn-success" ng-click="hitAPI()">Go Fetch</button> -->
 
 
 	<!--display to DOM all search results from API-->
-  	<table class="table table-striped" class="table-responsive">
+  	<!-- <table class="table table-striped">
     		<tr>
 			<th>Add to Favorites</th>
 			<th>Images</th>
-			<th>API ID?</th>
 		      <th>Name</th>
 		      <th>Breed(s)</th>
 		      <th>Primary Breed</th>
@@ -22,12 +21,14 @@
 			<th>Housetrained</th>
 			<th>Cratetrained</th>
 			<th>Description</th>
-			<th>Location (ZIP Code)</th>
 			<th>Adoption Fee (USD)</th>
-			<th>URL</th>
-		</tr>
+			<th>Location (ZIP Code)</th>
+			<th>Location Name</th>
+			<th>Location Phone #</th>
+			<th>Video(s)</th>
+		</tr> -->
 		<!-- allDogs is array of dog objects returned from API -->
-    		<tr ng-repeat="dog in allDogs">
+    		<!-- <tr ng-repeat="dog in allDogs">
 			<td><button type="button" name="button" class="btn btn-default" ng-click="addDog($index);">Add &#128062;</button></td>
 			<td><img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}"/></td>
 			<td>{{dog.animalName}}</td>
@@ -44,11 +45,57 @@
 			<td>{{dog.animalHousetrained}}</td>
 			<td>{{dog.animalCratetrained}}</td>
 			<td>{{dog.animalDescriptionPlain}}</td>
-			<td>{{dog.animalLocation}}</td>
 			<td>{{dog.animalAdoptionFee}}</td>
-			<td>{{dog.animalUrl}}</td>
-    		</tr>
-  	</table>
+			<td>{{dog.animalLocation}}</td>
+			<td>{{dog.locationName}}</td>
+			<td>{{dog.locationPhone}}</td> -->
+			<!-- <td><a href = "{{dog.animalVideoUrls[0].videoUrl}}" target="_blank">View Video</a></td> -->
+    		<!-- </tr>
+  	</table> -->
+
+
+	<md-content class="md-padding" layout-xs="column" layout="row">
+	    <div flex-xs="" flex-gt-lg="100" layout="column">
+	      <md-card id="dogCard" ng-repeat="dog in allDogs">
+	        <img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}" class="md-card-image" alt="adoptable dog">
+		  <md-card-title>
+	          <md-card-title-text>
+	            <span class="md-headline">Action buttons</span>
+	          </md-card-title-text>
+	        </md-card-title>
+        	<md-card-content>
+	          <p>
+			    {{dog.animalName}}
+	    		    {{dog.animalBreed}}
+	    		    {{dog.animalPrimaryBreed}}
+		    	    {{dog.animalSex}}
+		    	    {{dog.animalGeneralAge}}
+			    {{dog.animalBirthdateExact}}
+    			    {{dog.animalGeneralSizePotential}}
+    			    {{dog.animalOKWithDogs}}
+			    {{dog.animalOKWithCats}}
+			    {{dog.animalOKWithKids}}
+    			    {{dog.animalEnergyLevel}}
+    			    {{dog.animalHousetrained}}
+    			    {{dog.animalCratetrained}}
+    			    {{dog.animalDescriptionPlain}}
+    			    {{dog.animalAdoptionFee}}
+    			    {{dog.animalLocation}}
+    			    {{dog.locationName}}
+    			    {{dog.locationPhone}}
+    			    <a href = "{{dog.animalVideoUrls[0].videoUrl}}" target="_blank">View Video</a>
+	          </p>
+	        </md-card-content>
+	        <md-card-actions layout="row" layout-align="end center">
+	          <md-button type="button" name="button" class="btn btn-default" ng-click="hideDog();">NAH</md-button>
+		    <!-- <button type="button" name="button" class="btn btn-default" ng-click="addDog($index);">Add &#128062;</button> -->
+	          <md-button type="button" name="button" class="btn btn-default" ng-click="addDog($index);">LOVE &#128062;</md-button>
+	        </md-card-actions>
+      </md-card>
+</md-content>
+
+
+
 </div>
 
 
