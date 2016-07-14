@@ -1,10 +1,101 @@
-<div ng-controller='SettingsAPIController' ng-init="getFavoriteDogs()">
+<div ng-controller='SettingsAPIController' ng-init="getFavoriteDogs()" ng-cloak="">
 
-	<button type="button" name="button" class="btn btn-default" ng-click="getFavoriteDogs()">Fetch Favorites</button>
+	<md-content class="md-padding" >
+		<div layout="column" layout-gt-xs="row" >
+	      	<md-card flex="33" id="dogCard" ng-repeat="dog in favoriteDogs">
+				<div class="dogImages" layout-align="center center">
+		        		<img ng-src="{{dog.images}}" class="md-card-image" alt="adoptable dog">
+				</div>
+		  		<md-card-title>
+	          			<md-card-title-text>
+	            			<h3 layout="row" layout-align="center center">{{dog.name}}</h3>
+	          			</md-card-title-text>
+	        		</md-card-title>
 
+				<!-- nested controller for collapse button -->
+				<div ng-controller="CollapseDemoCtrl">
+					<div uib-collapse="isCollapsed">
+						<div class="well well-lg">
+
+        			<md-card-content>
+					<p>
+						Breed(s): {{dog.breed}}
+				    	</p>
+				    	<p>
+			    		    	Primary Breed: {{dog.primary_breed}}
+				    	</p>
+				    	<p>
+				    	    	Gender: {{dog.gender}}
+				    	</p>
+				    	<p>
+				    	    	Age: {{dog.age}}
+				    	</p>
+			          	<p>
+					    	Birthdate: {{dog.exact_birthdate}}
+				    	</p>
+				    	<p>
+					    	Size:  {{dog.size}}
+				    	</p>
+				    	<p>
+				  	    	Dog Friendly: {{dog.dog_friendly}}
+				    	</p>
+					<p>
+					    	Cat Friendly: {{dog.cat_friendly}}
+				    	</p>
+				    	<p>
+					    	Kid Friendly: {{dog.kid_friendly}}
+				    	</p>
+				    	<p>
+				  	    	Energy Level: {{dog.energy}}
+				    	</p>
+					<p>
+					    	Housetrained: {{dog.housetrained}}
+				    	</p>
+				    	<p>
+					    	Cratetrained: {{dog.cratetrained}}
+				    	</p>
+				    	<p>
+				  	    	Description: {{dog.description}}
+				    	</p>
+					<p>
+					    	Adoption Fee (USD): {{dog.adoption_fee}}
+				    	</p>
+				    	<p>
+					    	Location (ZIP Code): {{dog.location}}
+				    	</p>
+				    	<p>
+				  	    	Location (Name): {{dog.location_name}}
+				    	</p>
+					<p>
+						Location (Phone): {{dog.location_phone}}
+					</p>
+	        		</md-card-content>
+						</div>
+						<!-- end <div class="well well-lg"> -->
+					</div>
+					<!-- end <div uib-collapse="isCollapsed"> -->
+
+	        		<md-card-actions layout="row" layout-align="center center">
+
+					<!-- collapse button -->
+					<md-button type="button" name="button" aria-label="collapseInfo" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Fetch More/Less</md-button>
+					<!-- delete dog button -->
+	          			<md-button type="button" name="deleteButton" class="btn btn-default" aria-label="delete" id="{{dog._id}}" ng-click="deleteDog($index)">Remove</md-button>
+	        		</md-card-actions>
+				</div>
+				<!-- end <div ng-controller="CollapseDemoCtrl"> -->
+      		</md-card>
+		</div>
+	</md-content>
+</div>
+
+
+
+
+<!-- //////////////////////// -->
 
 		<!--display to DOM all search results from API-->
-	  	<table class="table table-striped" class="table-responsive">
+	  	<!-- <table class="table table-striped" class="table-responsive">
 	    		<tr>
 				<th>Remove</th>
 				<th>Image(s)</th>
@@ -26,10 +117,9 @@
 				<th>Location (ZIP Code)</th>
 				<th>Location Name)</th>
 				<th>Location Phone #</th>
-				<th>Video(s)</th>
-			</tr>
+			</tr> -->
 			<!-- favoriteDogs is array of saved dog objects in db -->
-	    		<tr ng-repeat="dog in favoriteDogs">
+	    		<!-- <tr ng-repeat="dog in favoriteDogs">
 				<td><button type="button" name="deleteButton" class="btn btn-default" id="{{dog._id}}" ng-click="deleteDog($index)">Remove</button></td>
 				<td><img ng-src="{{dog.images}}"/></td>
 			      <td>{{dog.name}}</td>
@@ -50,8 +140,7 @@
 				<td>{{dog.location}}</td>
 				<td>{{dog.location_name}}</td>
 				<td>{{dog.location_phone}}</td>
-				<td>{{dog.vieo}}</td>
 	    		</tr>
 	  	</table>
 
-</div>
+</div> -->

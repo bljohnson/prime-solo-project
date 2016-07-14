@@ -30,8 +30,7 @@ adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config all
 
 ///////////////////////// ------------------------------------------------------------------------------------------------------
 
-// test collapse functionality
-
+// test collapse functionality for viewing more info about each dog in search results page
 adoptionApp.controller('CollapseDemoCtrl', function ($scope) {
 	$scope.isCollapsed = true;
 });
@@ -145,7 +144,7 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 							{fieldName: "animalCratetrained",
 							operation: "equals",
 							criteria:  $scope.currentUser.cratetrained}],
-					fields: ["animalName", "animalBreed", "animalPrimaryBreed", "animalSex", "animalGeneralAge", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalGeneralSizePotential", "animalBirthdateExact", "animalOKWithDogs", "animalOKWithCats", "animalOKWithKids", "animalHousetrained", "animalCratetrained", "animalAdoptionFee", "animalPictures", "animalVideoUrls", "locationName", "animalId", "locationPhone"] // info from API we want to return
+					fields: ["animalName", "animalBreed", "animalPrimaryBreed", "animalSex", "animalGeneralAge", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalGeneralSizePotential", "animalBirthdateExact", "animalOKWithDogs", "animalOKWithCats", "animalOKWithKids", "animalHousetrained", "animalCratetrained", "animalAdoptionFee", "animalPictures", "locationName", "animalId", "locationPhone"] // info from API we want to return
 				} // end search
 			}; // end var data
 

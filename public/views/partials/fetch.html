@@ -52,10 +52,8 @@
 
 <!-- --------------//////////////--------------//////////////////////////--------------//////////////---------------- -->
 
-
 <div ng-controller="SettingsAPIController" ng-init="hitAPI()" ng-cloak="">
 <!--display to DOM all search results from API-->
-	<!-- <div> -->
 	<md-content class="md-padding" >
 		<div layout="column" layout-gt-xs="row" >
 	      	<md-card flex="33" id="dogCard" ng-repeat="dog in allDogs">
@@ -64,18 +62,14 @@
 				</div>
 		  		<md-card-title>
 	          			<md-card-title-text>
-	            			<h2 layout="row" layout-align="start center">{{dog.animalName}}</h2>
+	            			<h3 layout="row" layout-align="center center">{{dog.animalName}}</h3>
 	          			</md-card-title-text>
 	        		</md-card-title>
 
-	<!-- ///////////// /////////////// -->
-
-	<div ng-controller="CollapseDemoCtrl">
-		<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">View More Info</button>
-		<div uib-collapse="isCollapsed">
-			<div class="well well-lg">
-
-	<!-- ///////////// /////////////// -->
+				<!-- nested controller for collapse button -->
+				<div ng-controller="CollapseDemoCtrl">
+					<div uib-collapse="isCollapsed">
+						<div class="well well-lg">
 
         			<md-card-content>
 					<p>
@@ -129,39 +123,26 @@
 					<p>
 						Location (Phone): {{dog.locationPhone}}
 					</p>
-					<p>
-						<a href = "{{dog.animalVideoUrls[0].videoUrl}}" target="_blank">View My Video!</a>
-	          			</p>
 	        		</md-card-content>
+						</div>
+						<!-- end <div class="well well-lg"> -->
+					</div>
+					<!-- end <div uib-collapse="isCollapsed"> -->
 
-			</div>
-
-	<!-- ///////////// /////////////// -->
-
-			</div>
-			</div>
-
-	        		<md-card-actions layout="row" layout-align="end center">
+	        		<md-card-actions layout="row" layout-align="center center">
 	          			<md-button type="button" name="button" class="btn btn-default" aria-label="thumbsDown" ng-click="hideDog();">
 						<ng-md-icon icon="thumb_down"></ng-md-icon>
 					</md-button>
-	          			<md-button type="button" name="button" class="btn btn-default" aria-label="thumbsUp" ng-click="addDog($index);">
-						<ng-md-icon icon="thumb_up"></ng-md-icon>
-					</md-button>
+
+					<!-- collapse button -->
+					<md-button type="button" name="button" aria-label="collapseInfo" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Fetch More/Less</md-button>
+
+	          			<md-button type="button" name="button" class="btn btn-default" aria-label="thumbsUp" ng-click="addDog($index);"><ng-md-icon icon="thumb_up"></ng-md-icon></md-button>
 	        		</md-card-actions>
+				</div>
+				<!-- end <div ng-controller="CollapseDemoCtrl"> -->
       		</md-card>
 		</div>
 	</md-content>
 </div>
-
-
-<!-- <div ng-controller="CollapseDemoCtrl">
-	<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">View More Info</button>
-	<div uib-collapse="isCollapsed">
-		<div class="well well-lg">
-
-			Some content
-
-		</div>
-	</div>
-</div> -->
+<!-- end <div ng-controller="SettingsAPIController"  -->

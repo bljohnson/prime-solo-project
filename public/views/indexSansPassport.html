@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse" role="navigation">
+		<!-- <nav class="navbar navbar-inverse" role="navigation">
 			<div class="navbar-header">
 				<a class="navbar-brand" ui-sref="welcome">Search & Rescue</a>
 			</div>
@@ -29,7 +29,16 @@
 				<li><a ui-sref="fetch">Go Fetch</a></li>
 				<li><a ui-sref="favorites">My Favorites</a></li>
 			</ul>
-		</nav>
+		</nav> -->
+
+		<!-- <span flex></span> -->
+		<md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
+			<md-tab a ui-sref="welcome">Search & Rescue</md-tab>
+          		<md-tab a ui-sref="about">About</md-tab>
+			<md-tab a ui-sref="criteria">Search Criteria</md-tab>
+			<md-tab a ui-sref="fetch">Go Fetch</md-tab>
+			<md-tab a ui-sref="favorites">My Favorites</md-tab>
+		</md-tabs>
 
 		<!-- where content of each 'state' will be injected -->
 		<div class="container">
