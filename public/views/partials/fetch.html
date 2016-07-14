@@ -1,8 +1,4 @@
-<div ng-controller="SettingsAPIController" ng-init="hitAPI()" ng-cloak="">
-	<!-- <button type="button" name="button" class="btn btn-success" ng-click="hitAPI()">Go Fetch</button> -->
-
-
-	<!--display to DOM all search results from API-->
+<!--display to DOM all search results from API-->
   	<!-- <table class="table table-striped">
     		<tr>
 			<th>Add to Favorites</th>
@@ -54,15 +50,33 @@
   	</table> -->
 
 
-	<md-content class="md-padding" layout-xs="column" layout="row">
-		<div flex-xs="" flex-gt-xs="35" layout="column">
-	      	<md-card id="dogCard" ng-repeat="dog in allDogs">
-	        		<img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}" class="md-card-image" alt="adoptable dog">
+<!-- --------------//////////////--------------//////////////////////////--------------//////////////---------------- -->
+
+
+<div ng-controller="SettingsAPIController" ng-init="hitAPI()" ng-cloak="">
+<!--display to DOM all search results from API-->
+	<!-- <div> -->
+	<md-content class="md-padding" >
+		<div layout="column" layout-gt-xs="row" >
+	      	<md-card flex="33" id="dogCard" ng-repeat="dog in allDogs">
+				<div class="dogImages" layout-align="center center">
+		        		<img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}" class="md-card-image" alt="adoptable dog">
+				</div>
 		  		<md-card-title>
 	          			<md-card-title-text>
-	            			<span class="md-headline">{{dog.animalName}}</span>
+	            			<h2 layout="row" layout-align="start center">{{dog.animalName}}</h2>
 	          			</md-card-title-text>
 	        		</md-card-title>
+
+	<!-- ///////////// /////////////// -->
+
+	<div ng-controller="CollapseDemoCtrl">
+		<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">View More Info</button>
+		<div uib-collapse="isCollapsed">
+			<div class="well well-lg">
+
+	<!-- ///////////// /////////////// -->
+
         			<md-card-content>
 					<p>
 						Breed(s): {{dog.animalBreed}}
@@ -119,6 +133,14 @@
 						<a href = "{{dog.animalVideoUrls[0].videoUrl}}" target="_blank">View My Video!</a>
 	          			</p>
 	        		</md-card-content>
+
+			</div>
+
+	<!-- ///////////// /////////////// -->
+
+			</div>
+			</div>
+
 	        		<md-card-actions layout="row" layout-align="end center">
 	          			<md-button type="button" name="button" class="btn btn-default" aria-label="thumbsDown" ng-click="hideDog();">
 						<ng-md-icon icon="thumb_down"></ng-md-icon>
@@ -128,15 +150,18 @@
 					</md-button>
 	        		</md-card-actions>
       		</md-card>
+		</div>
 	</md-content>
-
-
-
 </div>
 
 
-<!-- testing modal functioning -->
-<!-- <div ng-controller="ModalController">
-	<h3>Test Modal Functioning</h3>
-	<button type="button" name="button" ng-click=openModal()>Open the Modal Button</button>
+<!-- <div ng-controller="CollapseDemoCtrl">
+	<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">View More Info</button>
+	<div uib-collapse="isCollapsed">
+		<div class="well well-lg">
+
+			Some content
+
+		</div>
+	</div>
 </div> -->

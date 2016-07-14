@@ -1,7 +1,6 @@
 console.log('Hello from script.js!');
 
-// will need to also inject ngDialog as dependency if use modals in Favorites list
-var adoptionApp = angular.module('adoptionApp', ['ui.router', 'ngMaterial', 'ngMdIcons']);
+var adoptionApp = angular.module('adoptionApp', ['ui.router', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ui.bootstrap']);
 
 adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config allows configuration of app before it boots up
 	$urlRouterProvider.otherwise('/welcome');
@@ -29,17 +28,16 @@ adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config all
 }); // end adoptionApp states configuration
 
 
+///////////////////////// ------------------------------------------------------------------------------------------------------
 
-// // test modal functionality
-// adoptionApp.controller('ModalController', function ($scope, ngDialog) {
-// 	$scope.openModal = function() {
-// 		ngDialog.open({ template: '/public/views/partials/about.html', className: 'ngdialog-theme-default' });
-// 	};
-// }); // end ModalController
+// test collapse functionality
 
+adoptionApp.controller('CollapseDemoCtrl', function ($scope) {
+	$scope.isCollapsed = true;
+});
 
+///////////////////////// ------------------------------------------------------------------------------------------------------
 
-///////////////////// ------------------------------------------------------------------------------------------------------
 
 adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($scope, $http) {
 	console.log('SettingsAPIController loaded');
