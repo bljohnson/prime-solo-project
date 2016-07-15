@@ -1,8 +1,7 @@
 <div ng-controller='SettingsAPIController' ng-init="getFavoriteDogs()" ng-cloak="">
-
-	<md-content class="md-padding" >
-		<div layout="column" layout-gt-xs="row" >
-	      	<md-card flex="33" id="dogCard" ng-repeat="dog in favoriteDogs">
+	<md-content class="md-padding" flex layout-wrap layout="row">
+		<div layout="column" layout-gt-xs="row" flex layout-wrap>
+	      	<md-card flex="20" id="dogCard" ng-repeat="dog in favoriteDogs">
 				<div class="dogImages" layout-align="center center">
 		        		<img ng-src="{{dog.images}}" class="md-card-image" alt="adoptable dog">
 				</div>
@@ -78,9 +77,10 @@
 	        		<md-card-actions layout="row" layout-align="center center">
 
 					<!-- collapse button -->
-					<md-button type="button" name="button" aria-label="collapseInfo" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Fetch More/Less</md-button>
+					<md-button type="button" name="button" aria-label="collapseInfo" class="md-fab" ng-click="isCollapsed = !isCollapsed"><ng-md-icon icon="description"></ng-md-icon></md-button>
 					<!-- delete dog button -->
-	          			<md-button type="button" name="deleteButton" class="btn btn-default" aria-label="delete" id="{{dog._id}}" ng-click="deleteDog($index)">Remove</md-button>
+	          			<md-button type="button" name="deleteButton" class="md-fab" aria-label="delete" id="{{dog._id}}" ng-click="deleteDog($index)"><ng-md-icon icon="delete"></ng-md-icon>
+					</md-button></md-button>
 	        		</md-card-actions>
 				</div>
 				<!-- end <div ng-controller="CollapseDemoCtrl"> -->

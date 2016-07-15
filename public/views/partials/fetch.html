@@ -54,9 +54,9 @@
 
 <div ng-controller="SettingsAPIController" ng-init="hitAPI()" ng-cloak="">
 <!--display to DOM all search results from API-->
-	<md-content class="md-padding" >
-		<div layout="column" layout-gt-xs="row" >
-	      	<md-card flex="33" id="dogCard" ng-repeat="dog in allDogs">
+	<md-content class="md-padding" flex layout-wrap layout="row">
+		<div layout="column" layout-gt-xs="row" flex layout-wrap>
+	      	<md-card flex="20" id="dogCard" ng-repeat="dog in allDogs">
 				<div class="dogImages" layout-align="center center">
 		        		<img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}" class="md-card-image" alt="adoptable dog">
 				</div>
@@ -66,7 +66,7 @@
 	          			</md-card-title-text>
 	        		</md-card-title>
 
-				<!-- nested controller for collapse button -->
+				<!-- nested controller for collapse button & its content -->
 				<div ng-controller="CollapseDemoCtrl">
 					<div uib-collapse="isCollapsed">
 						<div class="well well-lg">
@@ -129,15 +129,17 @@
 					</div>
 					<!-- end <div uib-collapse="isCollapsed"> -->
 
-	        		<md-card-actions layout="row" layout-align="center center">
-	          			<md-button type="button" name="button" class="btn btn-default" aria-label="thumbsDown" ng-click="hideDog();">
-						<ng-md-icon icon="thumb_down"></ng-md-icon>
+	        		<md-card-actions>
+					<section layout="row" layout-align="center center">
+
+	          			<md-button type="button" name="button" aria-label="notInterested" class="md-fab" ng-click="hideDog();"><ng-md-icon icon="not_interested"></ng-md-icon>
 					</md-button>
 
 					<!-- collapse button -->
-					<md-button type="button" name="button" aria-label="collapseInfo" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Fetch More/Less</md-button>
+					<md-button type="button"  layout-align="start center" name="button" aria-label="moreInfo" class="md-fab" ng-click="isCollapsed = !isCollapsed"><ng-md-icon icon="description"></ng-md-icon></md-button>
 
-	          			<md-button type="button" name="button" class="btn btn-default" aria-label="thumbsUp" ng-click="addDog($index);"><ng-md-icon icon="thumb_up"></ng-md-icon></md-button>
+	          			<md-button type="button" name="button"  class="md-fab" aria-label="favorite" ng-click="addDog($index);"><ng-md-icon icon="favorite"></ng-md-icon></md-button>
+				</section>
 	        		</md-card-actions>
 				</div>
 				<!-- end <div ng-controller="CollapseDemoCtrl"> -->

@@ -10,4 +10,4 @@ Once a search has been initiated, the resulting data is displayed on the screen 
 
 You will need to install the following after completing "npm init".
 
-npm install express express-session body-parser mongoose angular angular-ui-router bootstrap passport passport-local bcrypt angular-material angular-material-icons angular-ui-bootstrap --save
+npm install express express-session body-parser mongoose angular angular-ui-router bootstrap passport passport-local bcrypt angular-material angular-material-icons angular-ui-bootstrap angular-sanitize --save

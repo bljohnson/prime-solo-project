@@ -1,6 +1,6 @@
 console.log('Hello from script.js!');
 
-var adoptionApp = angular.module('adoptionApp', ['ui.router', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ui.bootstrap']);
+var adoptionApp = angular.module('adoptionApp', ['ui.router', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ui.bootstrap', 'ngSanitize']);
 
 adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config allows configuration of app before it boots up
 	$urlRouterProvider.otherwise('/welcome');
@@ -38,7 +38,7 @@ adoptionApp.controller('CollapseDemoCtrl', function ($scope) {
 ///////////////////////// ------------------------------------------------------------------------------------------------------
 
 
-adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($scope, $http) {
+adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http', function ($scope, $sanitize, $http) {
 	console.log('SettingsAPIController loaded');
 	// available to all functions within controller
 	$scope.objectToSendToDb = {}; // most recently entered settings
@@ -216,9 +216,14 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$http', function ($s
 
 
 	// removes dog from DOM (search results page) on button click
-	$scope.hideDog = function () {
+	// $scope.hideDog = function () {
+	// 	var noThanks = angular.element(document.querySelector('#dogCard'));
+      //    	noThanks.remove();
+	// };
+
+	$scope.hideDog = function (index) {
 		var noThanks = angular.element(document.querySelector('#dogCard'));
-         	noThanks.remove();
+		noThanks.remove();
 	};
 
 }]); // end SettingsAPIController

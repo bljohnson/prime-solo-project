@@ -1,24 +1,37 @@
-/*body {
-  width:100%;
+body {
+  /*width:100%;*/
   padding:0;
   margin:0;
-  box-sizing: border-box;
+  background-color: rgb(250, 250, 250)
+  /*box-sizing: border-box;*/
+}
+
+/*.container {
+	background-color: rgb(240,240,240);
 }*/
 
+.md-padding {
+	width: 100%;
+	margin: 4% auto;
+}
+
 md-content {
-  background-color: rgb(172,87,130);
+  background-color: rgb(63, 81, 181);
 }
 
 .dogImages {
-	height: 340px;
-	width: 400px;
+	height: auto;
+	width: 100%;
 	overflow: hidden;
 }
 
 .dogImages img {
 	height: auto;
-	width: 400px;
-	/*margin-left: 60px;*/
+	width: 100%;
+}
+
+.jumbotron {
+	width: 100%;
 }
 
 .jumbotron h2 {
@@ -27,9 +40,10 @@ md-content {
 	text-align: center;
 }
 
-.jumbotron h4 {
+h2, .jumbotron h4 {
 	text-align: center;
 }
+
 /*
 .jumbotron p {
   font-size: 20px;
@@ -37,14 +51,14 @@ md-content {
   margin: 1% 15%;
 }*/
 
-.jumbotron form {
+/*.jumbotron form {
 	border: 2px solid black;
 	padding: 2%;
 	width: 25%;
 	margin-left: 38%;
 	margin-top: 3%;
 	text-align: center;
-}
+}*/
 
 .jumbotron form .homeBtns {
 	margin-top: 7%;
@@ -54,9 +68,9 @@ footer {
 	text-align: center;
 }
 
-img {
+/*img {
   width: 200px;
-}
+}*/
 
 /*table {
   margin: 2% auto;
@@ -73,6 +87,9 @@ img {
 	font-weight: bolder;
 }*/
 
-/*#dogCard {
-	margin-top: 5%;
-}*/
+form {
+	margin-left: 25%;
+	border: solid 2px black;
+	width: 50%;
+	padding: 4%;
+}
