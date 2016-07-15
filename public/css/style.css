@@ -69,6 +69,13 @@ footer {
 	text-align: center;
 }
 
+.content {
+	 width: 650px;
+	 height: 60vh;
+	overflow-y: auto;
+	overflow-x: auto;
+}
+
 /*img {
   width: 200px;
 }*/

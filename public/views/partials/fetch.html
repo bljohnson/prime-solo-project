@@ -53,6 +53,7 @@
 <!-- --------------//////////////--------------//////////////////////////--------------//////////////---------------- -->
 
 <div ng-controller="SettingsAPIController" ng-init="hitAPI()" ng-cloak="">
+
 <!--display to DOM all search results from API-->
 	<md-content class="md-padding" flex layout-wrap layout="row">
 		<div layout="column" layout-gt-xs="row" flex layout-wrap>
@@ -67,11 +68,21 @@
 	        		</md-card-title>
 
 				<!-- nested controller for collapse button & its content -->
-				<div ng-controller="CollapseDemoCtrl">
+				<!-- <div ng-controller="CollapseDemoCtrl">
 					<div uib-collapse="isCollapsed">
-						<div class="well well-lg">
+						<div class="well well-lg"> -->
 
-        			<md-card-content>
+
+							<div ng-controller="ModalController">
+								<modal-dialog show='modalShown' class="modalDiv">
+									<!-- <p>Modal Content Goes here<p> -->
+								<!-- </modal-dialog> - -->
+							<!-- </div> -->
+
+							<h3 layout="row" layout-align="center center">{{dog.animalName}}</h3>
+
+
+        			<md-card-content class="content">
 					<p>
 						Breed(s): {{dog.animalBreed}}
 				    	</p>
@@ -124,10 +135,12 @@
 						Location (Phone): {{dog.locationPhone}}
 					</p>
 	        		</md-card-content>
-						</div>
+						<!-- </div> -->
 						<!-- end <div class="well well-lg"> -->
-					</div>
+					<!-- </div> -->
 					<!-- end <div uib-collapse="isCollapsed"> -->
+				</modal-dialog>
+
 
 	        		<md-card-actions>
 					<section layout="row" layout-align="center center">
@@ -136,15 +149,27 @@
 					</md-button>
 
 					<!-- collapse button -->
-					<md-button type="button"  layout-align="start center" name="button" aria-label="moreInfo" class="md-fab" ng-click="isCollapsed = !isCollapsed"><ng-md-icon icon="description"></ng-md-icon></md-button>
+					<!-- <md-button type="button"  layout-align="start center" name="button" aria-label="moreInfo" class="md-fab" ng-click="isCollapsed = !isCollapsed"><ng-md-icon icon="description"></ng-md-icon></md-button> -->
+
+					<!-- popover -->
+						  <!-- <button uib-popover="{{dynamicPopover.content}}" popover-title="{{dynamicPopover.title}}" type="button" class="btn btn-default">Dynamic Popover</button> -->
+				 	 <!-- popover -->
+
+					 <!-- modal button -->
+					 <md-button type="button" aria-label="moreInfo" class="md-fab" name="button" ng-click="toggleModal($index)"><ng-md-icon icon="description"></ng-md-icon></md-button>
+
 
 	          			<md-button type="button" name="button"  class="md-fab" aria-label="favorite" ng-click="addDog($index);"><ng-md-icon icon="favorite"></ng-md-icon></md-button>
 				</section>
 	        		</md-card-actions>
+
 				</div>
 				<!-- end <div ng-controller="CollapseDemoCtrl"> -->
+
+			<!-- end ModalController -->
       		</md-card>
 		</div>
 	</md-content>
 </div>
+
 <!-- end <div ng-controller="SettingsAPIController"  -->

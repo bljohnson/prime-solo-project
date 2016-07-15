@@ -37,8 +37,58 @@ adoptionApp.controller('CollapseDemoCtrl', function ($scope) {
 
 ///////////////////////// ------------------------------------------------------------------------------------------------------
 
+// test popover functionality for viewing more dog's info
+// adoptionApp.controller('PopoverController', function($scope, $sce) {
+// 	$scope.dynamicPopover = {
+// 		title: 'Description',
+// 		content: 'Test test test test test test test test test'
+// 	};
+// 	$scope.placement = {
+// 		options: [
+// 			'top'
+// 		],
+// 		selected: 'top'
+// 	};
+// });
 
-adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http', function ($scope, $sanitize, $http) {
+///////////////////////// ------------------------------------------------------------------------------------------------------
+
+// test ModalController
+adoptionApp.directive('modalDialog', function() {
+	return {
+		restrict: 'E',
+	    	scope: {
+	      show: '='
+	},
+	    	replace: true, // Replace with the template below
+	    	transclude: true, // we want to insert custom content inside the directive
+	    	link: function(scope, element, attrs) {
+	      	scope.dialogStyle = {};
+	      	if (attrs.width)
+	        		scope.dialogStyle.width = attrs.width;
+	      	if (attrs.height)
+	        		scope.dialogStyle.height = attrs.height;
+	      	scope.hideModal = function() {
+	        		scope.show = false;
+	      	};
+	    	},
+	    	template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div>"
+	  };
+}); // end test modal directive
+
+adoptionApp.controller('ModalController', ['$scope', function($scope) {
+	$scope.modalShown = false;
+  	$scope.toggleModal = function(index) {
+		console.log('modal button clicked');
+    		$scope.modalShown = !$scope.modalShown;
+	};
+}]); // end test ModalController
+
+///////////////////////// ------------------------------------------------------------------------------------------------------
+
+
+
+adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http', '$sce', function ($scope, $sanitize, $http, $sce) {
 	console.log('SettingsAPIController loaded');
 	// available to all functions within controller
 	$scope.objectToSendToDb = {}; // most recently entered settings
@@ -186,6 +236,9 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 			url: '/postDog',
 			data: sendDogToDb
 		});
+
+
+
 	}; // end addDog function
 
 
@@ -219,6 +272,8 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 
 
 	// removes dog from DOM (search results page) on button click
+
+
 	$scope.hideDog = function (dogNumber) { // dogNumber is index # assigned by ng-repeat
 		event.preventDefault();
 		console.log('addDog button clicked - index#: ' + dogNumber);
@@ -233,6 +288,7 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 			counter++;
 		} // end for
 	}; // end hideDog function test
+
 
 }]); // end SettingsAPIController
 
