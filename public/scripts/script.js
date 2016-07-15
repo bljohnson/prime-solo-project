@@ -144,7 +144,7 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 							{fieldName: "animalCratetrained",
 							operation: "equals",
 							criteria:  $scope.currentUser.cratetrained}],
-					fields: ["animalName", "animalBreed", "animalPrimaryBreed", "animalSex", "animalGeneralAge", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalGeneralSizePotential", "animalBirthdateExact", "animalOKWithDogs", "animalOKWithCats", "animalOKWithKids", "animalHousetrained", "animalCratetrained", "animalAdoptionFee", "animalPictures", "locationName", "animalId", "locationPhone"] // info from API we want to return
+					fields: ["animalName", "animalBreed", "animalPrimaryBreed", "animalSex", "animalGeneralAge", "animalLocation", "animalEnergyLevel", "animalDescriptionPlain", "animalGeneralSizePotential", "animalBirthdateExact", "animalOKWithDogs", "animalOKWithCats", "animalOKWithKids", "animalHousetrained", "animalCratetrained", "animalAdoptionFee", "animalPictures", "locationName", "animalID", "locationPhone"] // info from API we want to return
 				} // end search
 			}; // end var data
 
@@ -157,6 +157,10 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 					console.log("response.data: ", response.data);
 					$scope.showMeTheDogs.push(response.data.data); // whole API data structure
 					$scope.allDogs = $scope.showMeTheDogs[0]; // empty object that contains actual dog objects
+					////////////////////////////////
+					// $scope.testDog = ($scope.allDogs[4477499].animalDescriptionPlain);
+					// console.log('$scope.testDog: ', ($scope.testDog).toString());
+					////////////////////////////////
 			}); // end $http post
 		}, function myError(response) {
 			console.log(response.statusText);
@@ -183,7 +187,6 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 			data: sendDogToDb
 		});
 	}; // end addDog function
-
 
 
 	// define function to get favorited dogs from dogdb
@@ -216,14 +219,30 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 
 
 	// removes dog from DOM (search results page) on button click
-	// $scope.hideDog = function () {
-	// 	var noThanks = angular.element(document.querySelector('#dogCard'));
-      //    	noThanks.remove();
-	// };
-
-	$scope.hideDog = function (index) {
-		var noThanks = angular.element(document.querySelector('#dogCard'));
-		noThanks.remove();
-	};
+	$scope.hideDog = function (dogNumber) { // dogNumber is index # assigned by ng-repeat
+		event.preventDefault();
+		console.log('addDog button clicked - index#: ' + dogNumber);
+		var counter = 0; // resets dog API ID#s to start at 0
+		for (var dogId in $scope.allDogs) { // dogId is dog's API ID #. counter and dogId align as 'counter' var. $scope.allDogs is all the dog objects from search results
+			if (counter == dogNumber) {
+				console.log("hide this dog: ", dogId);
+				console.log( 'b4 delete', $scope.allDogs );
+				delete $scope.allDogs[dogId]; // remove dog from DOM whose button was clicked
+				console.log( 'after delete', $scope.allDogs );
+			} // end if
+			counter++;
+		} // end for
+	}; // end hideDog function test
 
 }]); // end SettingsAPIController
+
+
+
+
+
+// adoptionApp.controller('SanitizeController', ['$scope', function($scope) {
+// 	$scope.myHTML =
+// 	   'I am an <code>HTML</code>string with ' +
+// 	   '<a href="#">links!</a> and other <em>stuff</em>';
+// }]);
+// add ng-bind-html="myHTML" as attribute of html element (See About section for example that actually works)

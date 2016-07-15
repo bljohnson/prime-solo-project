@@ -17,6 +17,7 @@ body {
 
 md-content {
   background-color: rgb(63, 81, 181);
+  width: 100%;
 }
 
 .dogImages {
