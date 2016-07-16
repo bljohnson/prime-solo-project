@@ -11,8 +11,11 @@ body {
 	margin: 4% auto;
 }
 
+md-card {
+	width: 40%;
+}
 md-card-title {
-	height: 30%;
+	height: auto%;
 }
 
 /*where stuff gets inputed using ui router*/
@@ -50,14 +53,15 @@ h2, .jumbotron h4 {
 	text-align: center;
 }
 
-.jumbotron form .homeBtns {
+/*.jumbotron form .homeBtns {
 	margin-top: 7%;
-}
+}*/
 
 footer {
 	text-align: center;
 }
 
+/*modal*/
 .content {
 	 width: 600px;
 	 height: 60vh;
@@ -69,8 +73,8 @@ footer {
 }*/
 
 form {
-	margin-left: 25%;
+	margin: 0 auto;
 	border: solid 2px black;
-	width: 50%;
+	width: 57%;
 	padding: 4%;
 }

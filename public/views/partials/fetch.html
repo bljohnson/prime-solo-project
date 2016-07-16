@@ -4,7 +4,7 @@
 	<md-content class="md-padding" flex layout-wrap layout="row">
 		<div layout="column" layout-gt-xs="row" flex layout-wrap>
 
-	      	<md-card flex="25" ng-repeat="dog in allDogs">
+	      	<md-card flex="30" ng-repeat="dog in allDogs">
 
 				<div class="dogImages" layout-align="center center">
 		        		<img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}" class="md-card-image" alt="adoptable dog picture">
@@ -58,8 +58,8 @@
 						    	<p>
 							    	Cratetrained: {{dog.animalCratetrained}}
 						    	</p>
-						    	<p ng-bind-html="testDog">
-						  	    	Description: "{{dog.animalDescriptionPlain}}"
+						    	<p ng-bind-html="apiDog">
+						  	    	Description: {{dog.animalDescriptionPlain}}
 						    	</p>
 							<p>
 							    	Adoption Fee (USD): {{dog.animalAdoptionFee}}
@@ -78,8 +78,8 @@
 					</modal-dialog>
 
 	        		<md-card-actions>
-					<section layout="row" layout-align="center center">
-		          			<md-button type="button" name="button" aria-label="notInterested" class="md-fab" ng-click="hideDog($index);"><ng-md-icon icon="not_interested"></ng-md-icon>
+					<section class="resultButtons" layout="row" layout-align="center center">
+		          			<md-button type="button" name="button" aria-label="notInterested" class="md-fab" ng-click="hideDog($index);"><ng-md-icon icon="remove_circle"></ng-md-icon>
 						</md-button>
 
 						 <md-button type="button" aria-label="moreInfo" class="md-fab" name="button" ng-click="toggleModal($index)"><ng-md-icon icon="description"></ng-md-icon></md-button>

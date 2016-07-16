@@ -191,22 +191,31 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 					$scope.showMeTheDogs.push(response.data.data); // whole API data structure
 					$scope.allDogs = $scope.showMeTheDogs[0]; // empty object that contains actual dog objects
 
+////////////--------------------/////////////////////-----------------------///////////////////////// targeting right thing but not communicating with ng-bind-html in fetch.html -- descriptions don't show up in dogs' modals
 
-					// var count = 0;
-					for (var dogId in $scope.allDogs) { // dogId is API ID #. $scope.allDogs is all dog objects from search
-						// if (count == dogNumber)
-							$scope.testDog = $scope.allDogs[dogId].animalDescriptionPlain;
-							console.log('$scope.testDog: ', $scope.testDog);
-							// console.log('dogNumber: ', dogNumber);
-					//
-					// 	console.log('dogId: ', dogId);
-					}
-					// count ++;
+					for (var dogId in $scope.allDogs) { // iterates through object that contains dog objects
+						var obj = $scope.allDogs[dogId]; // var obj is each individual dog object
+					    	console.log('obj: ', obj); // logs out each dog object and their fields/values
+					    	for (var description in obj) { // iterates through fields of each individual dog object
+							if (description == 'animalDescriptionPlain') // target 'animalDescriptionPlain' field
+					        		console.log(description + " = " + obj[description]); // logs out each dog object's 'animalDescriptionPlain' field
+						  		$scope.apiDog = obj[description]; // store ^ in variable to hopefully sanitize the data using ng-bind-html
+						  		console.log('$scope.apiDog: ', $scope.apiDog); // logs out description field
+					    	} // end inner for/in
+					} // end outer for/in
+
+////////////--------------------/////////////////////-----------------------/////////////////////////
+
+
 
 			}); // end $http post
 		}, function myError(response) {
 			console.log(response.statusText);
 		}); // end myError and .then function response
+
+		// if ($scope.showMeTheDogs.length < 1) {
+		// 	swal('Bummer!', 'No dogs match your search criteria.', 'error');
+		// } // end alert message if no search results returned
 
   	}; // end hitAPI function
 

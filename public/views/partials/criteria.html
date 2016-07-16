@@ -8,7 +8,7 @@
 	</div>
 	<button type="button" name="button" ng-click="next()">Next Dog</button> -->
 
-<form name="settingsForm" novalidate>
+<form role="form" name="settingsForm" novalidate>
 	<div class="form-group">
 		<h4>5-digit ZIP Code</h4>
 		<input type="text" class="form-control" name="location" ng-model="zipcodeIn" value="" placeholder="e.g. 80022" ng-required="!zipcodeIn"><br><br>
@@ -21,70 +21,131 @@
 	<div class="form-group">
 		<h4>Primary Breed</h4>
 		<input type="text" class="form-control" name="breed" value="" ng-model="breedIn" placeholder="e.g. Great Dane"><br>
-		<p>* Enter either the full name of the breed you're seeking, or keywords such as "poodle" or "hound".<br>
-			* Spelling counts, so ask the Google if you're unsure.<br>
-			* NOT case-sensitive.<br>
+		<p>* Enter either the full name of the breed you're seeking, or keywords such as "poodle" or "hound". Spelling counts. NOT case-sensitive.<br>
 			* If no breed is entered, all applicable breeds will be included in the search results.
 		</p><br>
 	</div>
+
 	<div class="form-group">
 		<h4>Gender</h4>
 		<!-- ng-required = Field is only required when the value is not set. If a value is set, then required is removed and it will pass validation -->
-		<input type="radio" name="gender" ng-model="genderIn" value="male" ng-required="!genderIn"> Male<br>
-		<input type="radio" name="gender" ng-model="genderIn" value="female" ng-required="!genderIn"> Female<br>
-		<input type="radio" name="gender" ng-model="genderIn" value="noPreference" ng-required="!genderIn"> No Preference<br><br>
-	</div>
+		<label class="checkbox-inline">
+			<input type="radio" name="gender" ng-model="genderIn" value="male" ng-required="!genderIn"> Male
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="gender" ng-model="genderIn" value="female" ng-required="!genderIn"> Female
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="gender" ng-model="genderIn" value="noPreference" ng-required="!genderIn"> No Preference
+		</label>
+	</div><br>
+
 	<div class="form-group">
 		<h4>Age</h4>
-		<input type="radio" name="age" ng-model="ageIn" value="baby" ng-required="!ageIn"> Baby<br>
-		<input type="radio" name="age" ng-model="ageIn" value="young" ng-required="!ageIn"> Young<br>
-		<input type="radio" name="age" ng-model="ageIn" value="adult" ng-required="!ageIn"> Adult<br>
-		<input type="radio" name="age" ng-model="ageIn" value="senior" ng-required="!ageIn"> Senior<br>
-		<input type="radio" name="age" ng-model="ageIn" value="noPreference" ng-required="!ageIn"> No Preference<br><br>
-	</div>
+		<label class="checkbox-inline">
+			<input type="radio" name="age" ng-model="ageIn" value="baby" ng-required="!ageIn"> Baby
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="age" ng-model="ageIn" value="young" ng-required="!ageIn"> Young
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="age" ng-model="ageIn" value="adult" ng-required="!ageIn"> Adult
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="age" ng-model="ageIn" value="senior" ng-required="!ageIn"> Senior
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="age" ng-model="ageIn" value="noPreference" ng-required="!ageIn"> No Preference
+		</label>
+	</div><br>
+
 	<div class="form-group">
 		<h4>Size</h4>
-		<input type="radio" name="size" ng-model="sizeIn" value="small" ng-required="!sizeIn"> Small<br>
-		<input type="radio" name="size" ng-model="sizeIn" value="medium" ng-required="!sizeIn"> Medium<br>
-		<input type="radio" name="size" ng-model="sizeIn" value="large" ng-required="!sizeIn"> Large<br>
-		<input type="radio" name="size" ng-model="sizeIn" value="x-large" ng-required="!sizeIn"> X-Large<br>
-		<input type="radio" name="size" ng-model="sizeIn" value="noPreference" ng-required="!sizeIn"> No Preference<br><br>
-	</div>
+		<label class="checkbox-inline">
+			<input type="radio" name="size" ng-model="sizeIn" value="small" ng-required="!sizeIn"> Small
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="size" ng-model="sizeIn" value="medium" ng-required="!sizeIn"> Medium
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="size" ng-model="sizeIn" value="large" ng-required="!sizeIn"> Large
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="size" ng-model="sizeIn" value="x-large" ng-required="!sizeIn"> X-Large
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="size" ng-model="sizeIn" value="noPreference" ng-required="!sizeIn"> No Preference
+		</label>
+	</div><br>
+
 	<div class="form-group">
 		<h4>Dog Friendly</h4>
-		<input type="radio" name="dogFriendly" ng-model="dogFriendlyIn" value="yes" ng-required="!dogFriendlyIn"> Yes<br>
-		<input type="radio" name="dogFriendly" ng-model="dogFriendlyIn" value="noPreference" ng-required="!dogFriendlyIn"> No Preference<br><br>
-	</div>
+		<label class="checkbox-inline">
+			<input type="radio" name="dogFriendly" ng-model="dogFriendlyIn" value="yes" ng-required="!dogFriendlyIn"> Yes
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="dogFriendly" ng-model="dogFriendlyIn" value="noPreference" ng-required="!dogFriendlyIn"> No Preference
+		</label>
+	</div><br>
+
 	<div class="form-group">
 		<h4>Cat Friendly</h4>
-		<input type="radio" name="catFriendly" ng-model="catFriendlyIn" value="yes" ng-required="!catFriendlyIn"> Yes<br>
-		<input type="radio" name="catFriendly" ng-model="catFriendlyIn" value="noPreference" ng-required="!catFriendlyIn"> No Preference<br><br>
-	</div>
-	<div>
+		<label class="checkbox-inline">
+			<input type="radio" name="catFriendly" ng-model="catFriendlyIn" value="yes" ng-required="!catFriendlyIn"> Yes
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="catFriendly" ng-model="catFriendlyIn" value="noPreference" ng-required="!catFriendlyIn"> No Preference
+		</label>
+	</div><br>
+
+	<div class="form-group">
 		<h4>Kid Friendly</h4>
-		<input type="radio" name="kidFriendly" ng-model="kidFriendlyIn" value="yes" ng-required="!kidFriendlyIn"> Yes<br>
-		<input type="radio" name="kidFriendly" ng-model="kidFriendlyIn" value="noPreference" ng-required="!kidFriendlyIn"> No Preference<br><br>
-	</div>
+		<label class="checkbox-inline">
+			<input type="radio" name="kidFriendly" ng-model="kidFriendlyIn" value="yes" ng-required="!kidFriendlyIn"> Yes
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="kidFriendly" ng-model="kidFriendlyIn" value="noPreference" ng-required="!kidFriendlyIn"> No Preference
+		</label>
+	</div><br>
+
 	<div class="form-group">
 		<h4>Energy Level</h4>
-		<input type="radio" name="energyLevel" ng-model="energyLevelIn" value="low" ng-required="!energyLevelIn"> Low<br>
-		<input type="radio" name="energyLevel" ng-model="energyLevelIn" value="moderate" ng-required="!energyLevelIn"> Moderate<br>
-		<input type="radio" name="energyLevel" ng-model="energyLevelIn" value="high" ng-required="!energyLevelIn"> High<br>
-		<input type="radio" name="energyLevel" ng-model="energyLevelIn" value="noPreference" ng-required="!energyLevelIn"> No Preference<br><br>
-	</div>
+		<label class="checkbox-inline">
+			<input type="radio" name="energyLevel" ng-model="energyLevelIn" value="low" ng-required="!energyLevelIn"> Low
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="energyLevel" ng-model="energyLevelIn" value="moderate" ng-required="!energyLevelIn"> Moderate
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="energyLevel" ng-model="energyLevelIn" value="high" ng-required="!energyLevelIn"> High
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="energyLevel" ng-model="energyLevelIn" value="noPreference" ng-required="!energyLevelIn"> No Preference
+		</label>
+	</div><br>
+
 	<div class="form-group">
 		<h4>Housetrained</h4>
-		<input type="radio" name="housetrained" ng-model="housetrainedIn" value="yes" ng-required="!housetrainedIn"> Yes<br>
-		<input type="radio" name="housetrained" ng-model="housetrainedIn" value="noPreference" ng-required="!housetrainedIn"> No Preference<br><br>
-	</div>
+		<label class="checkbox-inline">
+			<input type="radio" name="housetrained" ng-model="housetrainedIn" value="yes" ng-required="!housetrainedIn"> Yes
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="housetrained" ng-model="housetrainedIn" value="noPreference" ng-required="!housetrainedIn"> No Preference
+		</label>
+	</div><br>
+
 	<div class="form-group">
 		<h4>Crate-trained</h4>
-		<input type="radio" name="cratetrained" ng-model="cratetrainedIn" value="yes" ng-required="!cratetrainedIn"> Yes<br>
-		<input type="radio" name="cratetrained" ng-model="cratetrainedIn" value="noPreference" ng-required="!cratetrainedIn"> No Preference<br><br>
-	</div>
+		<label class="checkbox-inline">
+			<input type="radio" name="cratetrained" ng-model="cratetrainedIn" value="yes" ng-required="!cratetrainedIn"> Yes
+		</label>
+		<label class="checkbox-inline">
+			<input type="radio" name="cratetrained" ng-model="cratetrainedIn" value="noPreference" ng-required="!cratetrainedIn"> No Preference
+		</label>
+	</div><br>
 
 	<div ng-controller="SettingsAPIController"  class="form-group">
-		<!-- button disabled if form invalid -->
+		<!-- button disabled if form invalid/required fields incomplete -->
 		<button type="submit" name="button" class="btn btn-success" ng-click="saveSettings()" ng-disabled="settingsForm.$invalid">Save Settings</button>
 	</div>
 
