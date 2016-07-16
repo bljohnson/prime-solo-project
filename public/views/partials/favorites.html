@@ -1,4 +1,4 @@
-<div ng-controller='SettingsAPIController' ng-init="getFavoriteDogs()" ng-cloak="">
+<div ng-controller='SettingsAPIController' ng-init="getFavoriteDogs($index)" ng-cloak="">
 
 	<!-- display to DOM all favorited dogs from db -->
 	<md-content class="md-padding" flex layout-wrap layout="row">
@@ -58,7 +58,7 @@
 						    	<p>
 							    	Cratetrained: {{dog.cratetrained}}
 						    	</p>
-						    	<p>
+						    	<p ng-bind-html="favoritedDog">
 						  	    	Description: {{dog.description}}
 						    	</p>
 							<p>

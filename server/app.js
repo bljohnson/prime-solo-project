@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path = require('path');
 
+var key = require('../modules/api.js');
+
 ////////////////// SANS PASSPORT ///////////////
 
 // var passport = require('../strategies/userStrategy');

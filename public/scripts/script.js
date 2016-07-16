@@ -112,7 +112,7 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 	}; // end saveSettings function
 
 
-	$scope.hitAPI = function(){
+	$scope.hitAPI = function(dogNumber){
 		var userSettings = {}; // global in order to access its contents from search page
 		$http({
 			method: 'GET',
@@ -190,14 +190,24 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 					console.log("response.data: ", response.data);
 					$scope.showMeTheDogs.push(response.data.data); // whole API data structure
 					$scope.allDogs = $scope.showMeTheDogs[0]; // empty object that contains actual dog objects
-					////////////////////////////////
-					// $scope.testDog = ($scope.allDogs[4477499].animalDescriptionPlain);
-					// console.log('$scope.testDog: ', ($scope.testDog).toString());
-					////////////////////////////////
+
+
+					// var count = 0;
+					for (var dogId in $scope.allDogs) { // dogId is API ID #. $scope.allDogs is all dog objects from search
+						// if (count == dogNumber)
+							$scope.testDog = $scope.allDogs[dogId].animalDescriptionPlain;
+							console.log('$scope.testDog: ', $scope.testDog);
+							// console.log('dogNumber: ', dogNumber);
+					//
+					// 	console.log('dogId: ', dogId);
+					}
+					// count ++;
+
 			}); // end $http post
 		}, function myError(response) {
 			console.log(response.statusText);
 		}); // end myError and .then function response
+
   	}; // end hitAPI function
 
 
@@ -228,12 +238,23 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 	// define function to get favorited dogs from dogdb
 	$scope.getFavoriteDogs = function () {
 		console.log('getFavoriteDogs button clicked');
+
 	   	$http({
 	     		method: 'GET',
 	     		url: '/getFavoriteDogs'
 		}).then(function(response){
 	     		$scope.favoriteDogs = response.data; // .data is the data in the response; favoriteDogs is the array of saved dog objects in dogdb
 	     		console.log('$scope.favoriteDogs: ', $scope.favoriteDogs);
+
+			// target each dog object when button clicked and sanitize description to remove html entities
+			var count = 0;
+			for (var dogId in $scope.favoriteDogs) { // dogId is index # assigned by ng-repeat. $scope.allDogs is all dog objects from search
+				if (count == dogId)
+					$scope.favoritedDog = $scope.favoriteDogs[dogId].description;
+					console.log('$scope.favoritedDog: ', $scope.favoritedDog);
+			}
+			count++;
+
 	   	}, function myError(response){
 	     		console.log(response.statusText);
 		}); // end 'then' success response (success and myError functions)

@@ -1,4 +1,4 @@
-<div ng-controller="SettingsAPIController" ng-init="hitAPI()" ng-cloak="">
+<div ng-controller="SettingsAPIController" ng-init="hitAPI($index)" ng-cloak="">
 
 	<!--display to DOM all search results from API-->
 	<md-content class="md-padding" flex layout-wrap layout="row">
@@ -58,7 +58,7 @@
 						    	<p>
 							    	Cratetrained: {{dog.animalCratetrained}}
 						    	</p>
-						    	<p>
+						    	<p ng-bind-html="testDog">
 						  	    	Description: "{{dog.animalDescriptionPlain}}"
 						    	</p>
 							<p>
