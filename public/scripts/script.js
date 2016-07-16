@@ -28,28 +28,6 @@ adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config all
 }); // end adoptionApp states configuration
 
 
-///////////////////////// ------------------------------------------------------------------------------------------------------
-
-// test collapse functionality for viewing more info about each dog in search results page
-adoptionApp.controller('CollapseDemoCtrl', function ($scope) {
-	$scope.isCollapsed = true;
-});
-
-///////////////////////// ------------------------------------------------------------------------------------------------------
-
-// test popover functionality for viewing more dog's info
-// adoptionApp.controller('PopoverController', function($scope, $sce) {
-// 	$scope.dynamicPopover = {
-// 		title: 'Description',
-// 		content: 'Test test test test test test test test test'
-// 	};
-// 	$scope.placement = {
-// 		options: [
-// 			'top'
-// 		],
-// 		selected: 'top'
-// 	};
-// });
 
 ///////////////////////// ------------------------------------------------------------------------------------------------------
 
@@ -76,7 +54,9 @@ adoptionApp.directive('modalDialog', function() {
 	  };
 }); // end test modal directive
 
+
 adoptionApp.controller('ModalController', ['$scope', function($scope) {
+	$scope.animationsEnabled = true;
 	$scope.modalShown = false;
   	$scope.toggleModal = function(index) {
 		console.log('modal button clicked');
@@ -126,6 +106,9 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 			console.log('response from postSettings: ', response);
 			$scope.hitAPI();
 		}); // end http post
+
+		swal('Success!', 'Settings saved.', 'success');
+
 	}; // end saveSettings function
 
 
@@ -237,7 +220,7 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 			data: sendDogToDb
 		});
 
-
+		swal('Gotcha!', 'Dog saved to favorites.', 'success');
 
 	}; // end addDog function
 

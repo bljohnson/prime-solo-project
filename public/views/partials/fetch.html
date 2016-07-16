@@ -1,175 +1,99 @@
-<!--display to DOM all search results from API-->
-  	<!-- <table class="table table-striped">
-    		<tr>
-			<th>Add to Favorites</th>
-			<th>Images</th>
-		      <th>Name</th>
-		      <th>Breed(s)</th>
-		      <th>Primary Breed</th>
-			<th>Gender</th>
-			<th>Age</th>
-			<th>Birthdate</th>
-			<th>Size</th>
-			<th>Good with Dogs</th>
-			<th>Good with Cats</th>
-			<th>Good with Kids</th>
-			<th>Energy Level</th>
-			<th>Housetrained</th>
-			<th>Cratetrained</th>
-			<th>Description</th>
-			<th>Adoption Fee (USD)</th>
-			<th>Location (ZIP Code)</th>
-			<th>Location Name</th>
-			<th>Location Phone #</th>
-			<th>Video(s)</th>
-		</tr> -->
-		<!-- allDogs is array of dog objects returned from API -->
-    		<!-- <tr ng-repeat="dog in allDogs">
-			<td><button type="button" name="button" class="btn btn-default" ng-click="addDog($index);">Add &#128062;</button></td>
-			<td><img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}"/></td>
-			<td>{{dog.animalName}}</td>
-		      <td>{{dog.animalBreed}}</td>
-			<td>{{dog.animalPrimaryBreed}}</td>
-			<td>{{dog.animalSex}}</td>
-			<td>{{dog.animalGeneralAge}}</td>
-			<td>{{dog.animalBirthdateExact}}</td>
-			<td>{{dog.animalGeneralSizePotential}}</td>
-			<td>{{dog.animalOKWithDogs}}</td>
-			<td>{{dog.animalOKWithCats}}</td>
-			<td>{{dog.animalOKWithKids}}</td>
-			<td>{{dog.animalEnergyLevel}}</td>
-			<td>{{dog.animalHousetrained}}</td>
-			<td>{{dog.animalCratetrained}}</td>
-			<td>{{dog.animalDescriptionPlain}}</td>
-			<td>{{dog.animalAdoptionFee}}</td>
-			<td>{{dog.animalLocation}}</td>
-			<td>{{dog.locationName}}</td>
-			<td>{{dog.locationPhone}}</td> -->
-			<!-- <td><a href = "{{dog.animalVideoUrls[0].videoUrl}}" target="_blank">View Video</a></td> -->
-    		<!-- </tr>
-  	</table> -->
-
-
-<!-- --------------//////////////--------------//////////////////////////--------------//////////////---------------- -->
-
 <div ng-controller="SettingsAPIController" ng-init="hitAPI()" ng-cloak="">
 
-<!--display to DOM all search results from API-->
+	<!--display to DOM all search results from API-->
 	<md-content class="md-padding" flex layout-wrap layout="row">
 		<div layout="column" layout-gt-xs="row" flex layout-wrap>
-	      	<md-card flex="25" id="dogCard" ng-repeat="dog in allDogs">
+
+	      	<md-card flex="25" ng-repeat="dog in allDogs">
+
 				<div class="dogImages" layout-align="center center">
-		        		<img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}" class="md-card-image" alt="adoptable dog">
+		        		<img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}" class="md-card-image" alt="adoptable dog picture">
 				</div>
+
 		  		<md-card-title>
 	          			<md-card-title-text>
 	            			<h3 layout="row" layout-align="center center">{{dog.animalName}}</h3>
 	          			</md-card-title-text>
 	        		</md-card-title>
 
-				<!-- nested controller for collapse button & its content -->
-				<!-- <div ng-controller="CollapseDemoCtrl">
-					<div uib-collapse="isCollapsed">
-						<div class="well well-lg"> -->
-
-
-							<div ng-controller="ModalController">
-								<modal-dialog show='modalShown' class="modalDiv">
-									<!-- <p>Modal Content Goes here<p> -->
-								<!-- </modal-dialog> - -->
-							<!-- </div> -->
-
-							<h3 layout="row" layout-align="center center">{{dog.animalName}}</h3>
-
-
-        			<md-card-content class="content">
-					<p>
-						Breed(s): {{dog.animalBreed}}
-				    	</p>
-				    	<p>
-			    		    	Primary Breed: {{dog.animalPrimaryBreed}}
-				    	</p>
-				    	<p>
-				    	    	Gender: {{dog.animalSex}}
-				    	</p>
-				    	<p>
-				    	    	Age: {{dog.animalGeneralAge}}
-				    	</p>
-			          	<p>
-					    	Birthdate: {{dog.animalBirthdateExact}}
-				    	</p>
-				    	<p>
-					    	Size: {{dog.animalGeneralSizePotential}}
-				    	</p>
-				    	<p>
-				  	    	Dog Friendly: {{dog.animalOKWithDogs}}
-				    	</p>
-					<p>
-					    	Cat Friendly: {{dog.animalOKWithCats}}
-				    	</p>
-				    	<p>
-					    	Kid Friendly: {{dog.animalOKWithKids}}
-				    	</p>
-				    	<p>
-				  	    	Energy Level: {{dog.animalEnergyLevel}}
-				    	</p>
-					<p>
-					    	Housetrained: {{dog.animalHousetrained}}
-				    	</p>
-				    	<p>
-					    	Cratetrained: {{dog.animalCratetrained}}
-				    	</p>
-				    	<p>
-				  	    	Description: "{{dog.animalDescriptionPlain}}"
-				    	</p>
-					<p>
-					    	Adoption Fee (USD): {{dog.animalAdoptionFee}}
-				    	</p>
-				    	<p>
-					    	Location (ZIP Code): {{dog.animalLocation}}
-				    	</p>
-				    	<p>
-				  	    	Location (Name): {{dog.locationName}}
-				    	</p>
-					<p>
-						Location (Phone): {{dog.locationPhone}}
-					</p>
-	        		</md-card-content>
-						<!-- </div> -->
-						<!-- end <div class="well well-lg"> -->
-					<!-- </div> -->
-					<!-- end <div uib-collapse="isCollapsed"> -->
-				</modal-dialog>
-
+				<!-- nested controller for modal -->
+				<div ng-controller="ModalController">
+					<modal-dialog show='modalShown'>
+						<!-- start modal content -->
+						<h3 layout="row" layout-align="center center">{{dog.animalName}}</h3>
+						<md-card-content class="content">
+							<p>
+								Breed(s): {{dog.animalBreed}}
+						    	</p>
+						    	<p>
+					    		    	Primary Breed: {{dog.animalPrimaryBreed}}
+						    	</p>
+						    	<p>
+						    	    	Gender: {{dog.animalSex}}
+						    	</p>
+						    	<p>
+						    	    	Age: {{dog.animalGeneralAge}}
+						    	</p>
+					          	<p>
+							    	Birthdate: {{dog.animalBirthdateExact}}
+						    	</p>
+						    	<p>
+							    	Size: {{dog.animalGeneralSizePotential}}
+						    	</p>
+						    	<p>
+						  	    	Dog Friendly: {{dog.animalOKWithDogs}}
+						    	</p>
+							<p>
+							    	Cat Friendly: {{dog.animalOKWithCats}}
+						    	</p>
+						    	<p>
+							    	Kid Friendly: {{dog.animalOKWithKids}}
+						    	</p>
+						    	<p>
+						  	    	Energy Level: {{dog.animalEnergyLevel}}
+						    	</p>
+							<p>
+							    	Housetrained: {{dog.animalHousetrained}}
+						    	</p>
+						    	<p>
+							    	Cratetrained: {{dog.animalCratetrained}}
+						    	</p>
+						    	<p>
+						  	    	Description: "{{dog.animalDescriptionPlain}}"
+						    	</p>
+							<p>
+							    	Adoption Fee (USD): {{dog.animalAdoptionFee}}
+						    	</p>
+						    	<p>
+							    	Location (ZIP Code): {{dog.animalLocation}}
+						    	</p>
+						    	<p>
+						  	    	Location (Name): {{dog.locationName}}
+						    	</p>
+							<p>
+								Location (Phone): {{dog.locationPhone}}
+							</p>
+	        				</md-card-content>
+						<!-- end modal content -->
+					</modal-dialog>
 
 	        		<md-card-actions>
 					<section layout="row" layout-align="center center">
+		          			<md-button type="button" name="button" aria-label="notInterested" class="md-fab" ng-click="hideDog($index);"><ng-md-icon icon="not_interested"></ng-md-icon>
+						</md-button>
 
-	          			<md-button type="button" name="button" aria-label="notInterested" class="md-fab" ng-click="hideDog($index);"><ng-md-icon icon="not_interested"></ng-md-icon>
-					</md-button>
+						 <md-button type="button" aria-label="moreInfo" class="md-fab" name="button" ng-click="toggleModal($index)"><ng-md-icon icon="description"></ng-md-icon></md-button>
 
-					<!-- collapse button -->
-					<!-- <md-button type="button"  layout-align="start center" name="button" aria-label="moreInfo" class="md-fab" ng-click="isCollapsed = !isCollapsed"><ng-md-icon icon="description"></ng-md-icon></md-button> -->
-
-					<!-- popover -->
-						  <!-- <button uib-popover="{{dynamicPopover.content}}" popover-title="{{dynamicPopover.title}}" type="button" class="btn btn-default">Dynamic Popover</button> -->
-				 	 <!-- popover -->
-
-					 <!-- modal button -->
-					 <md-button type="button" aria-label="moreInfo" class="md-fab" name="button" ng-click="toggleModal($index)"><ng-md-icon icon="description"></ng-md-icon></md-button>
-
-
-	          			<md-button type="button" name="button"  class="md-fab" aria-label="favorite" ng-click="addDog($index);"><ng-md-icon icon="favorite"></ng-md-icon></md-button>
-				</section>
+		          			<md-button type="button" name="button"  class="md-fab" aria-label="favorite" ng-click="addDog($index);"><ng-md-icon icon="favorite"></ng-md-icon></md-button>
+					</section>
 	        		</md-card-actions>
-
 				</div>
-				<!-- end <div ng-controller="CollapseDemoCtrl"> -->
+				<!-- end ModalController -->
 
-			<!-- end ModalController -->
       		</md-card>
+
 		</div>
+
 	</md-content>
 </div>
-
-<!-- end <div ng-controller="SettingsAPIController"  -->
+<!-- end SettingsAPIController" -->
