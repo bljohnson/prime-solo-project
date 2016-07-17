@@ -1,6 +1,6 @@
 console.log('Hello from script.js!');
 
-var adoptionApp = angular.module('adoptionApp', ['ui.router', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ui.bootstrap', 'ngSanitize']);
+var adoptionApp = angular.module('adoptionApp', ['ui.router', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ui.bootstrap', 'ngSanitize', 'jkAngularCarousel']);
 
 adoptionApp.config(function($stateProvider, $urlRouterProvider) { // .config allows configuration of app before it boots up
 	$urlRouterProvider.otherwise('/welcome');
@@ -206,8 +206,6 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 
 ////////////--------------------/////////////////////-----------------------/////////////////////////
 
-
-
 			}); // end $http post
 		}, function myError(response) {
 			console.log(response.statusText);
@@ -285,18 +283,16 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 
 
 	// removes dog from DOM (search results page) on button click
-
-
 	$scope.hideDog = function (dogNumber) { // dogNumber is index # assigned by ng-repeat
 		event.preventDefault();
 		console.log('addDog button clicked - index#: ' + dogNumber);
 		var counter = 0; // resets dog API ID#s to start at 0
 		for (var dogId in $scope.allDogs) { // dogId is dog's API ID #. counter and dogId align as 'counter' var. $scope.allDogs is all the dog objects from search results
 			if (counter == dogNumber) {
-				console.log("hide this dog: ", dogId);
-				console.log( 'b4 delete', $scope.allDogs );
+				console.log('hide this dog: ', dogId);
+				console.log('before delete', $scope.allDogs);
 				delete $scope.allDogs[dogId]; // remove dog from DOM whose button was clicked
-				console.log( 'after delete', $scope.allDogs );
+				console.log('after delete', $scope.allDogs);
 			} // end if
 			counter++;
 		} // end for
@@ -309,9 +305,104 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 
 
 
-// adoptionApp.controller('SanitizeController', ['$scope', function($scope) {
-// 	$scope.myHTML =
-// 	   'I am an <code>HTML</code>string with ' +
-// 	   '<a href="#">links!</a> and other <em>stuff</em>';
-// }]);
-// add ng-bind-html="myHTML" as attribute of html element (See About section for example that actually works)
+
+/////////////------------------------------//////////////----------------------------------/////////////////////////////////
+// test bootstrap carousel (in about.html page)
+//
+// adoptionApp.controller('CarouselDemoCtrl', ['$scope', function($scope) {
+// 	$scope.myInterval = 3000;
+//       $scope.noWrapSlides = false;
+//       $scope.active = 0;
+//       var slides = $scope.slides = [];
+//       var currIndex = 0;
+//
+// 	$scope.addSlide = function() {
+// 	    var newWidth = 600 + slides.length + 1;
+// 	    slides.push({
+// 	      image: 'https://s31.postimg.org/h9ig9uf4r/10371441_10209871513244703_6534321826601785445_n.jpg' + newWidth + '/300',
+// 		id: currIndex++
+// 		},
+// 		{
+// 		image: 'https://s32.postimg.org/arwf9bdwl/12342787_10209038500139896_7225106003343457396_n.jpg' + newWidth + '/300',
+// 	      id: currIndex++
+// 		},
+// 		{
+// 		image: 'https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/Common-dog-behaviors-explained.jpg?itok=FSzwbBoi' + newWidth + '/300',
+// 		id: currIndex++
+// 	    });
+//     	}; // end addSlide function
+//
+// 	  $scope.randomize = function() {
+// 	    var indexes = generateIndexesArray();
+// 	    assignNewIndexesToSlides(indexes);
+//     	}; // end randomize function
+//
+// 	  for (var i = 0; i < 4; i++) {
+// 	    $scope.addSlide();
+//     	} // end for loop
+//
+// 	  // Randomize logic below
+// 	  function assignNewIndexesToSlides(indexes) {
+// 	    for (var i = 0, l = slides.length; i < l; i++) {
+// 	      slides[i].id = indexes.pop();
+// 	    }
+//     	} // end assignNewIndexesToSlides function
+//
+// 	  function generateIndexesArray() {
+// 	    var indexes = [];
+// 	    for (var i = 0; i < currIndex; ++i) {
+// 	      indexes[i] = i;
+// 	    }
+// 	    return shuffle(indexes);
+//     	} // end generateIndexesArray function
+//
+// 	  // http://stackoverflow.com/questions/962802#962890
+// 	  function shuffle(array) {
+// 	    var tmp, current, top = array.length;
+//
+// 	    if (top) {
+// 	      while (--top) {
+// 	        current = Math.floor(Math.random() * (top + 1));
+// 	        tmp = array[current];
+// 	        array[current] = array[top];
+// 	        array[top] = tmp;
+// 	      }
+// 	    }
+//
+// 	    return array;
+// 	  }
+//
+// }]); // end carousel controller
+
+
+
+/////////////------------------------------//////////////----------------------------------/////////////////////////////////
+// test angular carousel
+adoptionApp.controller('MyCtrl', function($scope) {
+    $scope.dataArray = [
+      {
+        src: 'https://www.travelexcellence.com/images/movil/La_Paz_Waterfall.jpg'
+      },
+      {
+        src: 'http://www.parasholidays.in/blog/wp-content/uploads/2014/05/holiday-tour-packages-for-usa.jpg'
+      },
+      {
+        src: 'http://clickker.in/wp-content/uploads/2016/03/new-zealand-fy-8-1-Copy.jpg'
+      },
+      {
+        src: 'http://images.kuoni.co.uk/73/indonesia-34834203-1451484722-ImageGalleryLightbox.jpg'
+      },
+      {
+        src: 'http://www.holidaysaga.com/wp-content/uploads/2014/09/Day08-SIN-day-Free-City-View.jpg'
+      },
+      {
+        src: 'http://images.kuoni.co.uk/73/malaysia-21747826-1446726337-ImageGalleryLightbox.jpg'
+      },
+      {
+        src: 'http://www.kimcambodiadriver.com/uploads/images/tours/kim-cambodia-driver-angkor-wat.jpg'
+      },
+      {
+        src: 'https://www.travcoa.com/sites/default/files/styles/flexslider_full/public/tours/images/imperialvietnam-halong-bay-14214576.jpg?itok=O-q1yr5_'
+      }
+    ];
+}); // end angular carousel
