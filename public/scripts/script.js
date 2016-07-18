@@ -167,7 +167,7 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 							{fieldName: "animalEnergyLevel",
 							operation: "equals",
 							criteria:  $scope.currentUser.energy},
-							{fieldName: "animalPrimaryBreed",
+							{fieldName: "animalBreed",
 							operation: "contains",
 							criteria:  $scope.currentUser.breed},
 							{fieldName: "animalHousetrained",
@@ -242,7 +242,7 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 
 
 	// define function to get favorited dogs from dogdb
-	$scope.getFavoriteDogs = function (dogNumber) {
+	$scope.getFavoriteDogs = function () {
 		console.log('getFavoriteDogs button clicked');
 
 	   	$http({
@@ -254,23 +254,19 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 
 			// target each dog object when button clicked and sanitize description to remove html entities
 			var count = 0;
-			for (var dogId in $scope.favoriteDogs) { // dogId is index # assigned by ng-repeat. $scope.allDogs is all dog objects from search
+			for (var dogId in $scope.favoriteDogs) { // dogId is index # assigned by ng-repeat. $scope.favoriteDogs is array of all dog objects from search
 				console.log('dogId: ', dogId);
-				if (count == dogId) {
+				if (count == dogId)
 					$scope.favoritedDog = $scope.favoriteDogs[dogId].description;
 					console.log('$scope.favoritedDog: ', $scope.favoritedDog);
 				}
 				count++;
-			} // end for in
 
-			// var count = 0;
-			// if (count == dogId) {
-			// 	$scope.favoritedDog = $scope.favoriteDogs[dogId].description;
+			// doesn't work...
+			// for (var count=0; count < $scope.favoriteDogs.length; count++) {
+			// 	$scope.favoritedDog = $scope.favoriteDogs[count].description;
 			// 	console.log('$scope.favoritedDog: ', $scope.favoritedDog);
-			// } else {
-			// 	count++;
 			// }
-
 
 	   	}, function myError(response){
 	     		console.log(response.statusText);

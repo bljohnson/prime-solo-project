@@ -8,11 +8,12 @@ Once a search has been initiated, the resulting data is displayed on the screen 
 
 ###Installation
 
-You will need to install the following after completing "npm init".
+You will need to install the following after completing "npm init". Copy and paste this line.
 
-npm install express express-session body-parser mongoose angular angular-ui-router bootstrap passport passport-local bcrypt angular-material angular-material-icons angular-ui-bootstrap angular-sanitize --save
+npm install express body-parser mongoose angular angular-ui-router bootstrap angular-material angular-material-icons angular-ui-bootstrap angular-sanitize --save
 
 ###Future Version Updates:
-*Passport local authentication to enable multiple users to have unique search criteria and Favorites lists
+*Passport local authentication to enable multiple users to have unique search criteria and Favorites lists (will need to npm install express-session, passport, passport-local, and bcrypt in addition to the above requirements)
 *Update to display one dog at a time from search results, requiring user to click Remove button or Favorite button before next dog is displayed
-*Add more search criteria options
+*Expand to other species
+*Expand search criteria options

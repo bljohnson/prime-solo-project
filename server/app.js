@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path = require('path');
 
-var key = require('../modules/api.js');
+// var key = require('../modules/api.js');
 
 ////////////////// SANS PASSPORT ///////////////
 
@@ -18,7 +18,7 @@ var key = require('../modules/api.js');
 
 // include models
 var Dog = require('../models/dogModel'); // require model file that creates dogSchema
-var User = require('../models/userModel'); // require model file that creates userSchema
+// var User = require('../models/userModel'); // require model file that creates userSchema
 var Settings = require('../models/settingsModel'); // require model file that creates settingsSchema
 
 // middleware
@@ -173,7 +173,7 @@ app.post('/postDog', function(req, res) {
 }); // end app.post
 
 
-// delete dog from db (My Favorites view)
+// delete dog from db (Favorites view)
 app.post('/deleteDog', function(req, res) {
  	console.log('in delete route');
   	Dog.findOne({'_id': req.body.id}, function (err, pet) {
