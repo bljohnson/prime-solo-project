@@ -14,3 +14,5 @@ npm install express express-session body-parser mongoose angular angular-ui-rout
 
 ###Future Version Updates:
 *Passport local authentication to enable multiple users to have unique search criteria and Favorites lists
+*Update to display one dog at a time from search results, requiring user to click Remove button or Favorite button before next dog is displayed
+*Add more search criteria options
