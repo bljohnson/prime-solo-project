@@ -11,6 +11,7 @@ Once the user has entered their search criteria and a search has been initiated,
 * Express.js
 * AngularJS & Angular Material
 * Node.js
+* Rescue Groups API
 * Git
 * Bootstrap & UI Bootstrap
 * Heroku
