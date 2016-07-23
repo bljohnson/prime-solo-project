@@ -50,7 +50,9 @@ app.use(express.static('public'));
 // app.use('/*', index); // put last in routes
 
 // db connection string
-var connectToDB = mongoose.connect('mongodb://localhost:27017/adoptiondb').connection;
+// var connectToDB = mongoose.connect('mongodb://localhost:27017/adoptiondb').connection;
+
+var connectToDB = mongoose.connect('mongodb://bljohnson:master22@ds027215.mlab.com:27215/heroku_rrl4qvj7').connection;
 
 // test db connection
 connectToDB.on('error', function(err) {
