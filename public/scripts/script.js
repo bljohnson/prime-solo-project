@@ -192,16 +192,16 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 
 ////////////--------------------/////////////////////-----------------------///////////////////////// targeting right thing but not communicating with ng-bind-html in fetch.html -- descriptions don't show up in dogs' modals
 
-					for (var dogId in $scope.allDogs) { // iterates through object that contains dog objects
-						var obj = $scope.allDogs[dogId]; // var obj is each individual dog object
-					    	console.log('obj: ', obj); // logs out each dog object and their fields/values
-					    	for (var description in obj) { // iterates through fields of each individual dog object
-							if (description == 'animalDescriptionPlain') // target 'animalDescriptionPlain' field
-					        		console.log(description + " = " + obj[description]); // logs out each dog object's 'animalDescriptionPlain' field
-						  		$scope.apiDog = obj[description]; // store ^ in variable to hopefully sanitize the data using ng-bind-html
-						  		console.log('$scope.apiDog: ', $scope.apiDog); // logs out description field
-					    	} // end inner for/in
-					} // end outer for/in
+					// for (var dogId in $scope.allDogs) { // iterates through object that contains dog objects
+					// 	var obj = $scope.allDogs[dogId]; // var obj is each individual dog object
+					//     	console.log('obj: ', obj); // logs out each dog object and their fields/values
+					//     	for (var description in obj) { // iterates through fields of each individual dog object
+					// 		if (description == 'animalDescriptionPlain') // target 'animalDescriptionPlain' field
+					//         		console.log(description + " = " + obj[description]); // logs out each dog object's 'animalDescriptionPlain' field
+					// 	  		$scope.apiDog = obj[description]; // store ^ in variable to hopefully sanitize the data using ng-bind-html
+					// 	  		console.log('$scope.apiDog: ', $scope.apiDog); // logs out description field
+					//     	} // end inner for/in
+					// } // end outer for/in
 
 ////////////--------------------/////////////////////-----------------------/////////////////////////
 
@@ -251,22 +251,27 @@ adoptionApp.controller('SettingsAPIController', ['$scope', '$sanitize', '$http',
 		}).then(function(response){
 	     		$scope.favoriteDogs = response.data; // .data is the data in the response; favoriteDogs is the array of saved dog objects in dogdb
 	     		console.log('$scope.favoriteDogs: ', $scope.favoriteDogs);
+			console.log($scope.favoriteDogs.length);
 
-			// target each dog object when button clicked and sanitize description to remove html entities
-			var count = 0;
-			for (var dogId in $scope.favoriteDogs) { // dogId is index # assigned by ng-repeat. $scope.favoriteDogs is array of all dog objects from search
-				console.log('dogId: ', dogId);
-				if (count == dogId)
-					$scope.favoritedDog = $scope.favoriteDogs[dogId].description;
-					console.log('$scope.favoritedDog: ', $scope.favoritedDog);
-				}
-				count++;
+////////////////////////////-----------------////////////////////////////////-----------------///////////////////////////
+			// trying to target each dog object when button clicked and sanitize 'description' to remove html entities. any description button clicked just brings up last dog in array's description (sanitized at least though)
 
-			// doesn't work...
-			// for (var count=0; count < $scope.favoriteDogs.length; count++) {
-			// 	$scope.favoritedDog = $scope.favoriteDogs[count].description;
-			// 	console.log('$scope.favoritedDog: ', $scope.favoritedDog);
+			// for (var count = 0; count < $scope.favoriteDogs.length; count ++) {
+			// 		$scope.fav = $scope.favoriteDogs[count].description;
+			// 		console.log('$scope.fav: ', $scope.fav);
 			// }
+
+			for (var count = 0; count < $scope.favoriteDogs.length; count ++) {
+					$scope.test = $scope.favoriteDogs[count];// object
+					console.log('$scope.test: ', $scope.test);
+					for (var p in $scope.test) {// p is each field in object
+						if (p == 'description') { // want to target description to sanitize it
+							$scope.fav = $scope.test[p]; // correctly targets description field
+							console.log('description: ', $scope.test[p]);
+						}
+					}
+			}
+////////////////////////////-----------------////////////////////////////////-----------------///////////////////////////
 
 	   	}, function myError(response){
 	     		console.log(response.statusText);

@@ -1,11 +1,10 @@
+// require('dotenv').config();
+
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path = require('path');
-// require('dotenv').config();
-
-// var key = require('../modules/api.js');
 
 ////////////////// SANS PASSPORT ///////////////
 
@@ -49,9 +48,10 @@ app.use(express.static('public'));
 // app.use('/user', user);
 // app.use('/*', index); // put last in routes
 
-// db connection string
+// db connection string - local computer mongo db
 // var connectToDB = mongoose.connect('mongodb://localhost:27017/adoptiondb').connection;
 
+// db connection string - remote mongo DB (mLab)
 var connectToDB = mongoose.connect('mongodb://bljohnson:master22@ds027215.mlab.com:27215/heroku_rrl4qvj7').connection;
 
 // test db connection
