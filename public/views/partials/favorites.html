@@ -1,24 +1,101 @@
-<p>
-	in favorites.html
-</p>
+<div ng-controller='SettingsAPIController' ng-init="getFavoriteDogs($index)" ng-cloak="">
+
+	<!-- display to DOM all favorited dogs from db -->
+	<md-content class="md-padding" flex layout-wrap layout="row">
+		<div layout="column" layout-gt-xs="row" flex layout-wrap>
+
+	      	<md-card flex="25" ng-repeat="dog in favoriteDogs">
+
+				<div class="dogImages" layout-align="center center">
+		        		<img ng-src="{{dog.images}}" class="md-card-image" alt="adoptable dog">
+				</div>
+
+		  		<md-card-title>
+	          			<md-card-title-text>
+	            			<h3 layout="row" layout-align="center center">{{dog.name}}</h3>
+	          			</md-card-title-text>
+	        		</md-card-title>
+
+				<!-- nested controller for modal -->
+				<div ng-controller="ModalController">
+					<modal-dialog show='modalShown'>
+						<!-- start modal content -->
+						<h3 layout="row" layout-align="center center">{{dog.name}}</h3>
+						<md-card-content class="content">
+							<p>
+								Breed(s): {{dog.breed}}
+					    		</p>
+					    		<p>
+				    		    		Primary Breed: {{dog.primary_breed}}
+						    	</p>
+						    	<p>
+						    	    	Gender: {{dog.gender}}
+						    	</p>
+						    	<p>
+						    	    	Age: {{dog.age}}
+						    	</p>
+					          	<p>
+							    	Birthdate: {{dog.exact_birthdate}}
+						    	</p>
+						    	<p>
+							    	Size: {{dog.size}}
+						    	</p>
+						    	<p>
+						  	    	Dog Friendly: {{dog.dog_friendly}}
+						    	</p>
+							<p>
+							    	Cat Friendly: {{dog.cat_friendly}}
+						    	</p>
+						    	<p>
+							    	Kid Friendly: {{dog.kid_friendly}}
+						    	</p>
+						    	<p>
+						  	    	Energy Level: {{dog.energy}}
+						    	</p>
+							<p>
+							    	Housetrained: {{dog.housetrained}}
+						    	</p>
+						    	<p>
+							    	Cratetrained: {{dog.cratetrained}}
+						    	</p>
+						    	<!-- <p ng-bind-html="fav"> ///////// not currently working - cool. -->
+							<p>
+						  	    	Description: {{dog.description}}
+						    	</p>
+							<p>
+							    	Adoption Fee (USD): {{dog.adoption_fee}}
+						    	</p>
+						    	<p>
+							    	Location (ZIP Code): {{dog.location}}
+						    	</p>
+						    	<p>
+						  	    	Location (Name): {{dog.location_name}}
+						    	</p>
+							<p>
+								Location (Phone): {{dog.location_phone}}
+							</p>
+	        				</md-card-content>
+						<!-- end modal content -->
+					</modal-dialog>
 
 
+	        		<md-card-actions>
+					<section layout="row" layout-align="center center">
+						 <md-button type="button" aria-label="moreInfo" class="md-fab" name="button" ng-click="toggleModal($index)"><ng-md-icon icon="description"></ng-md-icon></md-button>
 
-<!-- <button type="button" name="favoritesButton" ng-click="getDogs()">View Favorites</button> -->
+		          			<md-button type="button" name="deleteButton" class="md-fab" aria-label="delete" id="{{dog._id}}" ng-click="deleteDog($index)"><ng-md-icon icon="delete"></ng-md-icon>
+						</md-button></md-button>
+					</section>
+	        		</md-card-actions>
+				</div>
+				<!-- end ModalController -->
 
-<!--TESTING DB CONNECTION/ROUTES - display to DOM all dogs in array of dog objects from adoptiondb-->
-<!-- eventually dog info will be saved to db and displayed here when user clicks 'like' button -->
-<!-- <table class="table table-striped">
-	<tr>
-		<th>Pet's Name</th>
-	      <th>Age</th>
-		<th>Breed</th>
-	      <th>Delete</th>
-	</tr>
-	<tr ng-repeat="dog in allDogs">
-	      <td>{{dog.name}}</td>
-	      <td>{{dog.age}}</td>
-	      <td>{{dog.breed}}</td>
-	      <td><button type="button" name="deleteButton" class="btn btn-default" id="{{dog._id}}" ng-click="deleteDog($index)">Delete</button></td>
-	</tr>
-</table> -->
+      		</md-card>
+
+		</div>
+
+	</md-content>
+
+</div>
+
+<!-- end SettingsAPIController" -->

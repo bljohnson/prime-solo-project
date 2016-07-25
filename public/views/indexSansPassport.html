@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="adoptionApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Search & Rescue</title>
+		<script src ="/vendors/angular.js" charset="utf-8"></script>
+		<script src="/vendors/angular-sanitize.min.js" charset="utf-8"></script>
+		<script src="/vendors/angular-ui-router.js" charset="utf-8"></script>
+		<script src="/vendors/angular-animate.min.js" charset="utf-8"></script>
+		<script src="/vendors/angular-aria.min.js" charset="utf-8"></script>
+		<script src="/vendors/angular-material.min.js" charset="utf-8"></script>
+		<script src="/vendors/angular-material-icons.min.js" charset="utf-8"></script>
+		<script src="/vendors/ui-bootstrap-tpls-1.3.3.min.js" charset="utf-8"></script>
+		<script src="/vendors/ng-modal.min.js" charset="utf-8"></script>
+		<script src="/vendors/sweetalert.min.js" charset="utf-8"></script>
+		<script src="/scripts/script.js" charset="utf-8"></script>
+		<link href="https://fonts.googleapis.com/css?family=Dosis:600" rel="stylesheet">
+		<link rel="stylesheet" href="/vendors/angular-material.min.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="/vendors/angular-material.layouts.min.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="/vendors/angular-material-icons.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="/vendors/ng-modal.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="/vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="/vendors/sweetalert.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+	</head>
+	<body>
+
+
+		<span flex></span>
+		<md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
+			<md-tab a ui-sref="welcome">Search & Rescue</md-tab>
+          		<md-tab a ui-sref="about">About</md-tab>
+			<md-tab a ui-sref="criteria">Search Criteria</md-tab>
+			<md-tab a ui-sref="fetch">Go Fetch</md-tab>
+			<md-tab a ui-sref="favorites">Favorites</md-tab>
+		</md-tabs>
+
+		<!-- where content of each 'state' will be injected -->
+		<div class="container">
+			<div ui-view></div>
+		</div>
+
+		<footer class="footer">
+			<div class="container">
+		    		<p class="text-muted">Copyright &copy; Bethany Johnson | 2016</p>
+		  	</div>
+		</footer>
+	</body>
+</html>

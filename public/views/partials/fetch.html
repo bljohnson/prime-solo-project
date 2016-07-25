@@ -1,19 +1,100 @@
-<p>
-	in fetch.html
-</p>
+<div ng-controller="SettingsAPIController" ng-init="hitAPI($index)" ng-cloak="">
 
-<!--TESTING DB CONNECTION/ROUTES - eventually needs to pull from Rescue Groups API in combination with user preferences-->
-<!-- <input type="text" ng-model="nameIn" value="" placeholder="Dog's Name">
-<input type="text" ng-model="ageIn" value="" placeholder="Dog's Age">
-<input type="text" ng-model="breedIn" value="" placeholder="Dog's Breed(s)">
+	<!--display to DOM all search results from API-->
+	<md-content class="md-padding" flex layout-wrap layout="row">
+		<div layout="column" layout-gt-xs="row" flex layout-wrap>
 
-<button type="button" name="addButton" ng-click="addDog()">Add to Favorites</button> -->
+	      	<md-card flex="25" ng-repeat="dog in allDogs">
 
+				<div class="dogImages" layout-align="center center">
+		        		<img ng-src="{{dog.animalPictures[0].urlSecureFullsize}}" class="md-card-image" alt="adoptable dog picture">
+				</div>
 
+		  		<md-card-title>
+	          			<md-card-title-text>
+	            			<h3 layout="row" layout-align="center center">{{dog.animalName}}</h3>
+	          			</md-card-title-text>
+	        		</md-card-title>
 
+				<!-- nested controller for modal -->
+				<div ng-controller="ModalController">
+					<modal-dialog show='modalShown'>
+						<!-- start modal content -->
+						<h3 layout="row" layout-align="center center">{{dog.animalName}}</h3>
+						<md-card-content class="content">
+							<p>
+								Breed(s): {{dog.animalBreed}}
+						    	</p>
+						    	<p>
+					    		    	Primary Breed: {{dog.animalPrimaryBreed}}
+						    	</p>
+						    	<p>
+						    	    	Gender: {{dog.animalSex}}
+						    	</p>
+						    	<p>
+						    	    	Age: {{dog.animalGeneralAge}}
+						    	</p>
+					          	<p>
+							    	Birthdate: {{dog.animalBirthdateExact}}
+						    	</p>
+						    	<p>
+							    	Size: {{dog.animalGeneralSizePotential}}
+						    	</p>
+						    	<p>
+						  	    	Dog Friendly: {{dog.animalOKWithDogs}}
+						    	</p>
+							<p>
+							    	Cat Friendly: {{dog.animalOKWithCats}}
+						    	</p>
+						    	<p>
+							    	Kid Friendly: {{dog.animalOKWithKids}}
+						    	</p>
+						    	<p>
+						  	    	Energy Level: {{dog.animalEnergyLevel}}
+						    	</p>
+							<p>
+							    	Housetrained: {{dog.animalHousetrained}}
+						    	</p>
+						    	<p>
+							    	Cratetrained: {{dog.animalCratetrained}}
+						    	</p>
+						    	<!-- <p ng-bind-html="apiDog">  ///////// not currently working - cool. -->
+							<p>
+						  	    	Description: {{dog.animalDescriptionPlain}}
+						    	</p>
+							<p>
+							    	Adoption Fee (USD): {{dog.animalAdoptionFee}}
+						    	</p>
+						    	<p>
+							    	Location (ZIP Code): {{dog.animalLocation}}
+						    	</p>
+						    	<p>
+						  	    	Location (Name): {{dog.locationName}}
+						    	</p>
+							<p>
+								Location (Phone): {{dog.locationPhone}}
+							</p>
+	        				</md-card-content>
+						<!-- end modal content -->
+					</modal-dialog>
 
-<!-- testing modal functioning -->
-<!-- <div ng-controller="ModalController">
-	<h3>Test Modal Functioning</h3>
-	<button type="button" name="button" ng-click=openModal()>Open the Modal Button</button>
-</div> -->
+	        		<md-card-actions>
+					<section class="resultButtons" layout="row" layout-align="center center">
+		          			<md-button type="button" name="button" aria-label="notInterested" class="md-fab" ng-click="hideDog($index);"><ng-md-icon icon="remove_circle"></ng-md-icon>
+						</md-button>
+
+						 <md-button type="button" aria-label="moreInfo" class="md-fab" name="button" ng-click="toggleModal($index)"><ng-md-icon icon="description"></ng-md-icon></md-button>
+
+		          			<md-button type="button" name="button"  class="md-fab" aria-label="favorite" ng-click="addDog($index);"><ng-md-icon icon="favorite"></ng-md-icon></md-button>
+					</section>
+	        		</md-card-actions>
+				</div>
+				<!-- end ModalController -->
+
+      		</md-card>
+
+		</div>
+
+	</md-content>
+</div>
+<!-- end SettingsAPIController" -->

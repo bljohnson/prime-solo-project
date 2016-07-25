@@ -1,32 +1,109 @@
-.jumbotron h2 {
-	font-size: 50px;
-	margin-bottom: 3%;
+body {
+  width:100%;
+  padding:0;
+  margin:0;
+  background-color: rgb(250, 250, 250);
+  box-sizing: border-box;
+  font-family: 'Dosis', sans-serif;
+}
+
+/*where stuff gets inserted using ui router*/
+.container {
+	width: 85%;
+}
+
+.jumbotron {
+	position: relative;
+	background: #E9E7E7 url("../images/eleanor.jpg") center center;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: 0% 33%;
+	overflow: hidden;
+	padding-top: 37%;
+}
+
+/*for presenting on large screen*/
+/*.jumbotron h1 {
+	font-size: 5em;
+	text-align: right;
+	color: rgb(0, 0, 0);
+	margin-top: 16%;
+	margin-right: -5%;
+}*/
+
+/*for laptop size screen*/
+.jumbotron h1 {
+	font-size: 5em;
+	text-align: right;
+	color: rgb(0, 0, 0);
+	margin-top: 20%;
+	margin-right: -14%;
+}
+
+h2 {
 	text-align: center;
-}
-
-.jumbotron h4 {
-	text-align: center;
-}
-
-.jumbotron p {
-  font-size: 20px;
-  text-align: center;
-  margin: 1% 15%;
-}
-
-.jumbotron form {
-	border: 2px solid black;
-	padding: 2%;
-	width: 25%;
-	margin-left: 38%;
-	margin-top: 3%;
-	text-align: center;
-}
-
-.jumbotron form .homeBtns {
-	margin-top: 7%;
 }
 
 footer {
 	text-align: center;
+}
+
+/*#photo-credit {
+	text-align: left;
+	margin-top: 25%;
+	margin-left: 15%;
+	font-size: 1em;
+}*/
+
+.md-padding {
+	width: 100%;
+	margin: 4% auto;
+}
+
+md-card {
+	margin: 25px !important;
+	overflow: auto;
+	max-width: 28% !important;
+	/*max-height: 20% !important;*/
+}
+
+/*md-card-title {
+	height: 20% !important;
+}*/
+
+md-content {
+  background-color: rgb(63, 81, 181);
+  width: 100%;
+}
+
+.dogImages {
+	height: auto;
+	width: 100%;
+	overflow: hidden;
+}
+
+.dogImages img {
+	height: 100%;
+	width: 100%;
+}
+
+#about {
+	margin: 5% auto;
+	font-size: 18px;
+	line-height: 1.5em;
+}
+
+/*modal*/
+.content {
+	 width: 95%;
+	 height: 60vh;
+	 overflow: auto;
+}
+
+form {
+	margin: 0 auto;
+	border: solid 2px black;
+	width: 57%;
+	padding: 4%;
 }
