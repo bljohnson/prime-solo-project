@@ -6,6 +6,10 @@ Search & Rescue is a full stack (MEAN stack) Javascript-based web application th
 
 Once the user has entered their search criteria and a search has been initiated, the resulting data is displayed on the screen in stripped down format. At this point, the user can click on the middle Description button for any given dog to open a modal with more details about the dog (e.g. house trained, adoption fee, a full biography if available, and etc). They can also click the Remove button to indicate lack of interest in that dog, removing it from their search results. If the user clicks the Favorite button, that dog's information will be saved to the user's Favorites list. The dogs in the Favorites list will be stored in a database using MongoDB, so the user has the ability to go back and reference them later. The user can also delete dogs from their list.
 
+###Live Demo
+
+https://damp-woodland-39851.herokuapp.com
+
 ###Technologies Used
 * MongoDB & mongoose
 * Express.js
